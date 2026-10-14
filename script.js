@@ -4339,10 +4339,12 @@ class SolitaireGame {
 
     const rankValue = card.rank || card.value || 1;
     let cardBodyHTML = '';
+    let topCornerSuitHTML = '';
 
     if (rankValue >= 11) {
       // Authentic German Berliner Bild Court Cards (Bube, Dame, König) with Schnaps & Drop suits
       cardBodyHTML = `<div class="card-court-figure">${getCourtCardSVG(rankValue, card.suit)}</div>`;
+      topCornerSuitHTML = `<span class="card-corner-suit">${getShotGlassSVG(card.suit, 'corner')}</span>`;
     } else {
       // Number Cards (1 to 10) - Shot glasses matching the number of the card
       cardBodyHTML = getPipsHTML(rankValue, card.suit);
@@ -4351,6 +4353,7 @@ class SolitaireGame {
     el.innerHTML = `
       <div class="card-corner top-left">
         <span class="card-rank">${card.label}</span>
+        ${topCornerSuitHTML}
       </div>
       ${cardBodyHTML}
       <div class="card-corner bottom-right">

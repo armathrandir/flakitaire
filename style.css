@@ -608,11 +608,12 @@ body.is-pointer-dragging * {
   color: #c25e00; /* Farbe 4: Holunderschnaps Sonnengold (Hell) */
 }
 
-/* Card Corners - Rank only, no corner glasses */
+/* Card Corners - Rank and optional corner suit symbol */
 .card-corner {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   line-height: 1;
   padding: 2px 4px;
   position: relative;
@@ -635,11 +636,23 @@ body.is-pointer-dragging * {
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.95), 0 0 5px #ffffff;
 }
 
+.card-corner-suit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
 /* SVG Shot Glass Icons */
 .shot-svg {
   display: block;
   overflow: visible;
   filter: drop-shadow(0 1px 1px rgba(0,0,0,0.18));
+}
+
+.shot-svg-corner {
+  width: clamp(12px, 1.6vw, 18px);
+  height: clamp(15px, 2.0vw, 22px);
 }
 
 .shot-svg-small {
@@ -1536,6 +1549,11 @@ body.is-pointer-dragging * {
   .shot-svg-small {
     width: 11px;
     height: 14px;
+  }
+
+  .shot-svg-corner {
+    width: 9px;
+    height: 12px;
   }
 
   .card-pips {
