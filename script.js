@@ -1038,7 +1038,7 @@ const TRANSLATIONS = {
   }
 };
 
-// --- Custom Schnaps & Beer SVG Generator (4 New Suits) ---
+// --- Custom Schnaps & Beer SVG Generator (4 Suits) ---
 function getShotGlassSVG(suitName, size = 'small') {
   const sizeClass = `shot-svg shot-svg-${size}`;
   const uid = Math.random().toString(36).substr(2, 6);
@@ -1048,46 +1048,61 @@ function getShotGlassSVG(suitName, size = 'small') {
       return `
         <svg class="${sizeClass}" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <linearGradient id="sbGrad_${uid}" x1="12" y1="10" x2="12" y2="35" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#2d1508"/>
-              <stop offset="0.3" stop-color="#190a03"/>
-              <stop offset="0.75" stop-color="#0e0401"/>
+            <linearGradient id="sbGrad_${uid}" x1="4" y1="12" x2="22" y2="34" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#3b1b0b"/>
+              <stop offset="0.28" stop-color="#1f0c04"/>
+              <stop offset="0.7" stop-color="#0f0502"/>
               <stop offset="1" stop-color="#050100"/>
             </linearGradient>
-            <linearGradient id="sbFoam_${uid}" x1="12" y1="3" x2="12" y2="12" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#fffbeb"/>
-              <stop offset="0.6" stop-color="#fef3c7"/>
-              <stop offset="1" stop-color="#fde68a"/>
+            <linearGradient id="sbFoam_${uid}" x1="12" y1="2.5" x2="12" y2="13" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#ffffff"/>
+              <stop offset="0.55" stop-color="#fef3c7"/>
+              <stop offset="1" stop-color="#f59e0b"/>
+            </linearGradient>
+            <linearGradient id="sbBase_${uid}" x1="4" y1="35" x2="22" y2="35" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#cbd5e1"/>
+              <stop offset="0.5" stop-color="#f8fafc"/>
+              <stop offset="1" stop-color="#64748b"/>
             </linearGradient>
           </defs>
 
-          <!-- Big Sturdy Handle (Henkel on right) -->
-          <path d="M21 12 C29.5 12, 30 29, 20 29 C26.5 28, 26.5 13.5, 21 14 Z" fill="rgba(255,255,255,0.25)" stroke="#94a3b8" stroke-width="1.4" stroke-linejoin="round"/>
+          <!-- Subtle Ground Shadow -->
+          <ellipse cx="13.5" cy="38.5" rx="9" ry="1.3" fill="rgba(0,0,0,0.22)"/>
 
-          <!-- Heavy Solid Base -->
-          <path d="M4.5 32 L5.2 36 Q5.5 38.5 8.5 38.5 L17.5 38.5 Q20.5 38.5 20.8 36 L21.5 32 Z" fill="#b0bec5" stroke="#64748b" stroke-width="1.1"/>
+          <!-- Sturdy Molded Glass Handle (Henkel on right) -->
+          <path d="M21 12.5 C29.8 12.5, 30.2 29.2, 20.2 29.2 C26.2 28, 26.2 14.2, 21 14.8 Z" fill="rgba(255,255,255,0.38)" stroke="#475569" stroke-width="1.45" stroke-linejoin="round"/>
+          <path d="M22.5 14 C27.8 14.5, 28 27, 21.8 27.5" stroke="#ffffff" stroke-width="0.9" stroke-linecap="round" fill="none" opacity="0.85"/>
 
-          <!-- Dark Schwarzbier Liquid Body -->
-          <path d="M3.8 11.5 L5.5 33 L20.5 33 L22.2 11.5 Z" fill="url(#sbGrad_${uid})"/>
+          <!-- Heavy Dimpled Glass Base -->
+          <path d="M4.5 32 L5.2 36 Q5.5 38.4 8.5 38.4 L17.5 38.4 Q20.5 38.4 20.8 36 L21.5 32 Z" fill="url(#sbBase_${uid})" stroke="#475569" stroke-width="1.15"/>
+          <ellipse cx="13" cy="36.2" rx="6.2" ry="0.9" fill="#ffffff" opacity="0.7"/>
 
-          <!-- Glass Body Outline -->
-          <path d="M3.2 11 L5.2 33 Q5.5 38.5 8.5 38.5 L17.5 38.5 Q20.5 38.5 20.8 33 L22.8 11 Z" fill="rgba(255,255,255,0.06)" stroke="#64748b" stroke-width="1.4" stroke-linejoin="round"/>
+          <!-- Deep Roasted Schwarzbier Liquid Body -->
+          <path d="M3.8 11.2 L5.4 33.2 L20.6 33.2 L22.2 11.2 Z" fill="url(#sbGrad_${uid})"/>
 
-          <!-- Ruby malt edge reflex -->
-          <line x1="20" y1="13" x2="18.5" y2="31" stroke="#78350f" stroke-width="1.1" opacity="0.7"/>
+          <!-- Warm Mahogany Bottom Refraction Glow -->
+          <path d="M6.2 29 L19.8 29 L19.3 32.8 L6.7 32.8 Z" fill="#9a3412" opacity="0.45"/>
 
-          <!-- Glass Vertical Facet Reflections -->
-          <line x1="8.5" y1="13" x2="8.5" y2="30" stroke="rgba(255,255,255,0.22)" stroke-width="0.9"/>
-          <line x1="16.5" y1="13" x2="16.5" y2="30" stroke="rgba(255,255,255,0.18)" stroke-width="0.9"/>
+          <!-- Outer Glass Mug Wall Outline -->
+          <path d="M3.2 11 L5.2 33 Q5.5 38.4 8.5 38.4 L17.5 38.4 Q20.5 38.4 20.8 33 L22.8 11 Z" fill="rgba(255,255,255,0.05)" stroke="#334155" stroke-width="1.45" stroke-linejoin="round"/>
 
-          <!-- Left Glass Specular Reflection Streak -->
-          <path d="M5.5 13 L6.8 31" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" opacity="0.95"/>
+          <!-- Ruby Malt Edge Reflex -->
+          <line x1="19.8" y1="13" x2="18.4" y2="31.5" stroke="#b45309" stroke-width="1.2" stroke-linecap="round" opacity="0.75"/>
 
-          <!-- Generous Creamy Foam Head (Cresting on top) -->
-          <path d="M2.5 11 C2 7, 6.5 5, 8.5 7 C10.5 4, 15 4, 17.5 6 C19.5 5, 23.5 7, 23 11 C21.5 13.5, 4 13.5, 2.5 11 Z" fill="url(#sbFoam_${uid})" stroke="#d97706" stroke-width="0.8"/>
-          <circle cx="7" cy="7.5" r="1.4" fill="#ffffff" opacity="0.8"/>
-          <circle cx="13" cy="5.5" r="1.7" fill="#ffffff" opacity="0.85"/>
-          <circle cx="18.5" cy="7" r="1.3" fill="#ffffff" opacity="0.75"/>
+          <!-- Molded Glass Facet Flutes -->
+          <line x1="9" y1="13.5" x2="9.4" y2="31" stroke="rgba(255,255,255,0.26)" stroke-width="1"/>
+          <line x1="13.5" y1="13.5" x2="13.5" y2="31" stroke="rgba(255,255,255,0.16)" stroke-width="1"/>
+          <line x1="17.5" y1="13.5" x2="17.1" y2="31" stroke="rgba(255,255,255,0.2)" stroke-width="0.9"/>
+
+          <!-- Crisp Left Specular Highlight Streak -->
+          <path d="M5.4 13 L6.8 31.2" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" opacity="0.95"/>
+
+          <!-- Rich Creamy Malt Foam Head -->
+          <path d="M2.2 11.2 C1.5 6.8, 6.2 4.5, 8.6 6.6 C10.6 3.2, 15.4 3.2, 17.8 5.6 C20 4.4, 24 6.6, 23.4 11.2 C21.8 13.8, 4.2 13.8, 2.2 11.2 Z" fill="url(#sbFoam_${uid})" stroke="#b45309" stroke-width="0.95" stroke-linejoin="round"/>
+          <path d="M4.2 9.5 Q 8.5 11.5 13.5 10.5 Q 18.5 9.5 21.5 10.8" stroke="rgba(180,83,9,0.35)" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+          <circle cx="7" cy="7.2" r="1.5" fill="#ffffff" opacity="0.9"/>
+          <circle cx="13" cy="5.4" r="1.9" fill="#ffffff" opacity="0.95"/>
+          <circle cx="18.6" cy="6.8" r="1.4" fill="#ffffff" opacity="0.85"/>
         </svg>
       `;
 
@@ -1095,36 +1110,49 @@ function getShotGlassSVG(suitName, size = 'small') {
       return `
         <svg class="${sizeClass}" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <linearGradient id="dgGrad_${uid}" x1="16" y1="16" x2="16" y2="35" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#0d2b17"/>
-              <stop offset="0.35" stop-color="#071b0e"/>
+            <linearGradient id="dgGrad_${uid}" x1="10" y1="17" x2="22" y2="34" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#143d22"/>
+              <stop offset="0.35" stop-color="#092111"/>
               <stop offset="0.75" stop-color="#041208"/>
-              <stop offset="1" stop-color="#020804"/>
+              <stop offset="1" stop-color="#010603"/>
+            </linearGradient>
+            <linearGradient id="dgBase_${uid}" x1="10" y1="33" x2="22" y2="33" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#64748b"/>
+              <stop offset="0.5" stop-color="#cbd5e1"/>
+              <stop offset="1" stop-color="#334155"/>
             </linearGradient>
           </defs>
 
-          <!-- Glass Body -->
-          <path d="M9 14 L11 33 Q11 36 13.5 36 L18.5 36 Q21 36 21 33 L23 14 Z" fill="rgba(255,255,255,0.08)" stroke="#4b5563" stroke-width="1.3" stroke-linejoin="round"/>
+          <!-- Subtle Ground Shadow -->
+          <ellipse cx="16" cy="36.6" rx="6.2" ry="1" fill="rgba(0,0,0,0.22)"/>
 
-          <!-- Heavy Glass Base -->
-          <path d="M11 31 L11.4 33.5 Q11.4 36 13.5 36 L18.5 36 Q20.6 36 20.6 33.5 L21 31 Z" fill="#374151" stroke="#1f2937" stroke-width="0.8"/>
+          <!-- Heavy Crystal Shot Base -->
+          <path d="M10.9 30.5 L11.4 33.8 Q11.5 36.2 13.6 36.2 L18.4 36.2 Q20.5 36.2 20.6 33.8 L21.1 30.5 Z" fill="url(#dgBase_${uid})" stroke="#1e293b" stroke-width="0.9"/>
+          <ellipse cx="16" cy="34.4" rx="3.8" ry="0.65" fill="#ffffff" opacity="0.65"/>
 
-          <!-- Very Dark Green Liquid -->
-          <path d="M10.2 19 L11.5 32 L20.5 32 L21.8 19 Z" fill="url(#dgGrad_${uid})"/>
+          <!-- Deep Forest-Black Herbal Schnaps Liquid -->
+          <path d="M10.1 18.6 L11.4 31.8 L20.6 31.8 L21.9 18.6 Z" fill="url(#dgGrad_${uid})"/>
+
+          <!-- Emerald Bottom Refraction -->
+          <path d="M11.6 29.2 L20.4 29.2 L20.1 31.6 L11.9 31.6 Z" fill="#15803d" opacity="0.45"/>
+
+          <!-- Tapered Shot Glass Body -->
+          <path d="M9 14 L11 33.2 Q11.2 36.2 13.6 36.2 L18.4 36.2 Q20.8 36.2 21 33.2 L23 14 Z" fill="rgba(255,255,255,0.08)" stroke="#334155" stroke-width="1.35" stroke-linejoin="round"/>
 
           <!-- Liquid Surface Meniscus -->
-          <ellipse cx="16" cy="19" rx="6" ry="1.6" fill="#0f381e" stroke="#082212" stroke-width="0.6"/>
+          <ellipse cx="16" cy="18.6" rx="5.9" ry="1.55" fill="#144526" stroke="#05180c" stroke-width="0.7"/>
+          <path d="M11.5 18.5 Q16 19.6 20.5 18.5" stroke="#4ade80" stroke-width="0.5" fill="none" opacity="0.55"/>
 
           <!-- Subtle Bubble -->
-          <circle cx="17.5" cy="24" r="1.1" fill="#1b5e20" opacity="0.6"/>
+          <circle cx="17.6" cy="23.5" r="1.05" fill="#22c55e" opacity="0.55"/>
 
-          <!-- Specular Reflection Streaks -->
-          <path d="M10.8 16 L12 31" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round"/>
-          <path d="M21.2 16 L20.2 30" stroke="rgba(255,255,255,0.3)" stroke-width="0.7" stroke-linecap="round"/>
+          <!-- Specular Glass Highlights -->
+          <path d="M10.7 15.8 L12 31.2" stroke="#ffffff" stroke-width="1.35" stroke-linecap="round"/>
+          <path d="M21.3 15.8 L20.1 30.5" stroke="rgba(255,255,255,0.4)" stroke-width="0.8" stroke-linecap="round"/>
 
-          <!-- Rim -->
-          <ellipse cx="16" cy="14" rx="7" ry="1.7" fill="rgba(255,255,255,0.22)" stroke="#6b7280" stroke-width="1.1"/>
-          <ellipse cx="16" cy="14" rx="6.2" ry="1.3" fill="none" stroke="#ffffff" stroke-width="0.7"/>
+          <!-- Polished Glass Rim -->
+          <ellipse cx="16" cy="14" rx="7" ry="1.65" fill="rgba(255,255,255,0.28)" stroke="#475569" stroke-width="1.15"/>
+          <ellipse cx="16" cy="14" rx="6.2" ry="1.2" fill="none" stroke="#ffffff" stroke-width="0.75"/>
         </svg>
       `;
 
@@ -1132,50 +1160,65 @@ function getShotGlassSVG(suitName, size = 'small') {
       return `
         <svg class="${sizeClass}" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <linearGradient id="pilsGrad_${uid}" x1="12" y1="10" x2="12" y2="35" gradientUnits="userSpaceOnUse">
+            <linearGradient id="pilsGrad_${uid}" x1="4" y1="11" x2="22" y2="34" gradientUnits="userSpaceOnUse">
               <stop stop-color="#fef08a"/>
               <stop offset="0.3" stop-color="#facc15"/>
-              <stop offset="0.75" stop-color="#eab308"/>
-              <stop offset="1" stop-color="#ca8a04"/>
+              <stop offset="0.72" stop-color="#eab308"/>
+              <stop offset="1" stop-color="#b45309"/>
             </linearGradient>
-            <linearGradient id="pilsFoam_${uid}" x1="12" y1="3" x2="12" y2="12" gradientUnits="userSpaceOnUse">
+            <linearGradient id="pilsFoam_${uid}" x1="12" y1="2.5" x2="12" y2="13" gradientUnits="userSpaceOnUse">
               <stop stop-color="#ffffff"/>
-              <stop offset="0.7" stop-color="#f8fafc"/>
-              <stop offset="1" stop-color="#e2e8f0"/>
+              <stop offset="0.68" stop-color="#f8fafc"/>
+              <stop offset="1" stop-color="#cbd5e1"/>
+            </linearGradient>
+            <linearGradient id="pilsBase_${uid}" x1="4" y1="35" x2="22" y2="35" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#e2e8f0"/>
+              <stop offset="0.5" stop-color="#ffffff"/>
+              <stop offset="1" stop-color="#94a3b8"/>
             </linearGradient>
           </defs>
 
-          <!-- Big Sturdy Mug Handle (Henkel on right) -->
-          <path d="M21 12 C29.5 12, 30 29, 20 29 C26.5 28, 26.5 13.5, 21 14 Z" fill="rgba(255,255,255,0.35)" stroke="#94a3b8" stroke-width="1.4" stroke-linejoin="round"/>
+          <!-- Subtle Ground Shadow -->
+          <ellipse cx="13.5" cy="38.5" rx="9" ry="1.3" fill="rgba(0,0,0,0.2)"/>
 
-          <!-- Heavy Glass Base -->
-          <path d="M4.5 32 L5.2 36 Q5.5 38.5 8.5 38.5 L17.5 38.5 Q20.5 38.5 20.8 36 L21.5 32 Z" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.1"/>
+          <!-- Big Sturdy Mug Handle (Henkel on right) -->
+          <path d="M21 12.5 C29.8 12.5, 30.2 29.2, 20.2 29.2 C26.2 28, 26.2 14.2, 21 14.8 Z" fill="rgba(255,255,255,0.45)" stroke="#64748b" stroke-width="1.45" stroke-linejoin="round"/>
+          <path d="M22.5 14 C27.8 14.5, 28 27, 21.8 27.5" stroke="#ffffff" stroke-width="0.95" stroke-linecap="round" fill="none" opacity="0.9"/>
+
+          <!-- Heavy Molded Glass Base -->
+          <path d="M4.5 32 L5.2 36 Q5.5 38.4 8.5 38.4 L17.5 38.4 Q20.5 38.4 20.8 36 L21.5 32 Z" fill="url(#pilsBase_${uid})" stroke="#64748b" stroke-width="1.15"/>
+          <ellipse cx="13" cy="36.2" rx="6.2" ry="0.9" fill="#ffffff" opacity="0.85"/>
 
           <!-- Golden Pilsner Liquid Body -->
-          <path d="M3.8 11.5 L5.5 33 L20.5 33 L22.2 11.5 Z" fill="url(#pilsGrad_${uid})"/>
+          <path d="M3.8 11.2 L5.4 33.2 L20.6 33.2 L22.2 11.2 Z" fill="url(#pilsGrad_${uid})"/>
+
+          <!-- Bright Amber Bottom Glow -->
+          <path d="M6.2 29.2 L19.8 29.2 L19.3 32.8 L6.7 32.8 Z" fill="#fef08a" opacity="0.5"/>
 
           <!-- Glass Body Outline -->
-          <path d="M3.2 11 L5.2 33 Q5.5 38.5 8.5 38.5 L17.5 38.5 Q20.5 38.5 20.8 33 L22.8 11 Z" fill="rgba(255,255,255,0.1)" stroke="#b45309" stroke-width="1.4" stroke-linejoin="round"/>
+          <path d="M3.2 11 L5.2 33 Q5.5 38.4 8.5 38.4 L17.5 38.4 Q20.5 38.4 20.8 33 L22.8 11 Z" fill="rgba(255,255,255,0.08)" stroke="#9a3412" stroke-width="1.45" stroke-linejoin="round"/>
 
-          <!-- Rising Carbonation Bubbles -->
-          <circle cx="8" cy="28" r="0.9" fill="#ffffff" opacity="0.85"/>
-          <circle cx="11" cy="22" r="0.7" fill="#ffffff" opacity="0.8"/>
-          <circle cx="15" cy="26" r="0.8" fill="#ffffff" opacity="0.85"/>
-          <circle cx="14" cy="17" r="0.6" fill="#ffffff" opacity="0.9"/>
-          <circle cx="18" cy="20" r="0.7" fill="#ffffff" opacity="0.8"/>
+          <!-- Rising Effervescent Carbonation Bubbles -->
+          <circle cx="8.2" cy="28" r="0.9" fill="#ffffff" opacity="0.9"/>
+          <circle cx="11.2" cy="22" r="0.75" fill="#ffffff" opacity="0.85"/>
+          <circle cx="15.2" cy="26.5" r="0.85" fill="#ffffff" opacity="0.9"/>
+          <circle cx="14" cy="17.5" r="0.65" fill="#ffffff" opacity="0.95"/>
+          <circle cx="18" cy="20.5" r="0.75" fill="#ffffff" opacity="0.85"/>
 
-          <!-- Glass Vertical Facet Reflections -->
-          <line x1="8.5" y1="13" x2="8.5" y2="30" stroke="rgba(255,255,255,0.4)" stroke-width="0.9"/>
-          <line x1="16.5" y1="13" x2="16.5" y2="30" stroke="rgba(255,255,255,0.3)" stroke-width="0.9"/>
+          <!-- Molded Glass Facet Flutes -->
+          <line x1="9" y1="13.5" x2="9.4" y2="31" stroke="rgba(255,255,255,0.45)" stroke-width="1"/>
+          <line x1="13.5" y1="13.5" x2="13.5" y2="31" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+          <line x1="17.5" y1="13.5" x2="17.1" y2="31" stroke="rgba(255,255,255,0.35)" stroke-width="0.9"/>
 
           <!-- Left Glass Specular Reflection Streak -->
-          <path d="M5.5 13 L6.8 31" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" opacity="0.95"/>
+          <path d="M5.4 13 L6.8 31.2" stroke="#ffffff" stroke-width="1.65" stroke-linecap="round" opacity="0.98"/>
 
           <!-- Pure Snow-White Foam Head (Cresting on top) -->
-          <path d="M2.5 11 C2 6.5, 6.5 4.5, 8.5 6.5 C10.5 3.5, 15 3.5, 17.5 5.5 C19.5 4.5, 23.5 6.5, 23 11 C21.5 13.5, 4 13.5, 2.5 11 Z" fill="url(#pilsFoam_${uid})" stroke="#94a3b8" stroke-width="0.8"/>
-          <circle cx="7" cy="7" r="1.4" fill="#ffffff"/>
-          <circle cx="13" cy="5" r="1.8" fill="#ffffff"/>
-          <circle cx="18.5" cy="6.5" r="1.3" fill="#ffffff"/>
+          <path d="M2.2 11.2 C1.5 6.5, 6.2 4.3, 8.6 6.4 C10.6 3.0, 15.4 3.0, 17.8 5.4 C20 4.2, 24 6.4, 23.4 11.2 C21.8 13.8, 4.2 13.8, 2.2 11.2 Z" fill="url(#pilsFoam_${uid})" stroke="#64748b" stroke-width="0.95" stroke-linejoin="round"/>
+          <path d="M4.2 9.5 Q 8.5 11.5 13.5 10.5 Q 18.5 9.5 21.5 10.8" stroke="rgba(100,116,139,0.3)" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+          <circle cx="7" cy="7" r="1.5" fill="#ffffff"/>
+          <circle cx="13" cy="5.2" r="1.9" fill="#ffffff"/>
+          <circle cx="18.6" cy="6.6" r="1.4" fill="#ffffff"/>
         </svg>
       `;
 
@@ -1183,36 +1226,49 @@ function getShotGlassSVG(suitName, size = 'small') {
       return `
         <svg class="${sizeClass}" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <linearGradient id="holunderGrad_${uid}" x1="16" y1="16" x2="16" y2="35" gradientUnits="userSpaceOnUse">
+            <linearGradient id="holunderGrad_${uid}" x1="10" y1="17" x2="22" y2="34" gradientUnits="userSpaceOnUse">
               <stop stop-color="#fef9c3"/>
-              <stop offset="0.4" stop-color="#fef08a"/>
-              <stop offset="0.8" stop-color="#fde047"/>
-              <stop offset="1" stop-color="#eab308"/>
+              <stop offset="0.38" stop-color="#fef08a"/>
+              <stop offset="0.78" stop-color="#facc15"/>
+              <stop offset="1" stop-color="#ca8a04"/>
+            </linearGradient>
+            <linearGradient id="holBase_${uid}" x1="10" y1="33" x2="22" y2="33" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#fef3c7"/>
+              <stop offset="0.5" stop-color="#ffffff"/>
+              <stop offset="1" stop-color="#d97706"/>
             </linearGradient>
           </defs>
 
-          <!-- Glass Body -->
-          <path d="M9 14 L11 33 Q11 36 13.5 36 L18.5 36 Q21 36 21 33 L23 14 Z" fill="rgba(254,240,138,0.12)" stroke="#b45309" stroke-width="1.3" stroke-linejoin="round"/>
+          <!-- Subtle Ground Shadow -->
+          <ellipse cx="16" cy="36.6" rx="6.2" ry="1" fill="rgba(0,0,0,0.18)"/>
 
-          <!-- Heavy Glass Base -->
-          <path d="M11 31 L11.4 33.5 Q11.4 36 13.5 36 L18.5 36 Q20.6 36 20.6 33.5 L21 31 Z" fill="#fef9c3" stroke="#ca8a04" stroke-width="0.8"/>
+          <!-- Heavy Crystal Base -->
+          <path d="M10.9 30.5 L11.4 33.8 Q11.5 36.2 13.6 36.2 L18.4 36.2 Q20.5 36.2 20.6 33.8 L21.1 30.5 Z" fill="url(#holBase_${uid})" stroke="#b45309" stroke-width="0.9"/>
+          <ellipse cx="16" cy="34.4" rx="3.8" ry="0.65" fill="#ffffff" opacity="0.8"/>
 
-          <!-- Transparent Hell-Gelb Liquid -->
-          <path d="M10.2 19 L11.5 32 L20.5 32 L21.8 19 Z" fill="url(#holunderGrad_${uid})" opacity="0.88"/>
+          <!-- Transparent Sun-Gold Elderflower Schnaps Liquid -->
+          <path d="M10.1 18.6 L11.4 31.8 L20.6 31.8 L21.9 18.6 Z" fill="url(#holunderGrad_${uid})" opacity="0.92"/>
+
+          <!-- Golden Honey Bottom Glow -->
+          <path d="M11.6 29.2 L20.4 29.2 L20.1 31.6 L11.9 31.6 Z" fill="#f59e0b" opacity="0.45"/>
+
+          <!-- Tapered Shot Glass Body -->
+          <path d="M9 14 L11 33.2 Q11.2 36.2 13.6 36.2 L18.4 36.2 Q20.8 36.2 21 33.2 L23 14 Z" fill="rgba(254,240,138,0.14)" stroke="#9a3412" stroke-width="1.35" stroke-linejoin="round"/>
 
           <!-- Liquid Surface Meniscus -->
-          <ellipse cx="16" cy="19" rx="6" ry="1.6" fill="#fffbeb" stroke="#d97706" stroke-width="0.6"/>
+          <ellipse cx="16" cy="18.6" rx="5.9" ry="1.55" fill="#fffbeb" stroke="#b45309" stroke-width="0.7"/>
 
-          <!-- Dew Sparkle -->
-          <circle cx="17.5" cy="24" r="1.1" fill="#ffffff" opacity="0.9"/>
+          <!-- Sparkling Dew Bubbles -->
+          <circle cx="17.5" cy="23.8" r="1.15" fill="#ffffff" opacity="0.95"/>
+          <circle cx="14.2" cy="27.5" r="0.8" fill="#ffffff" opacity="0.85"/>
 
           <!-- Specular Reflections -->
-          <path d="M10.8 16 L12 31" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round"/>
-          <path d="M21.2 16 L20.2 30" stroke="rgba(255,255,255,0.4)" stroke-width="0.7" stroke-linecap="round"/>
+          <path d="M10.7 15.8 L12 31.2" stroke="#ffffff" stroke-width="1.35" stroke-linecap="round"/>
+          <path d="M21.3 15.8 L20.1 30.5" stroke="rgba(255,255,255,0.55)" stroke-width="0.8" stroke-linecap="round"/>
 
-          <!-- Rim -->
-          <ellipse cx="16" cy="14" rx="7" ry="1.7" fill="rgba(254,240,138,0.22)" stroke="#b45309" stroke-width="1.1"/>
-          <ellipse cx="16" cy="14" rx="6.2" ry="1.3" fill="none" stroke="#ffffff" stroke-width="0.7"/>
+          <!-- Polished Rim -->
+          <ellipse cx="16" cy="14" rx="7" ry="1.65" fill="rgba(254,240,138,0.28)" stroke="#9a3412" stroke-width="1.15"/>
+          <ellipse cx="16" cy="14" rx="6.2" ry="1.2" fill="none" stroke="#ffffff" stroke-width="0.75"/>
         </svg>
       `;
 
@@ -1249,99 +1305,137 @@ function getPipsHTML(rankValue, suitName) {
 }
 
 // --- Authentic Berliner Bild Court Card SVG Generator (Schnaps Edition) ---
-// Single-direction (ungespiegelt) classical figures filling the card height:
-// - King (König): Bügelkrone, Ermine mantle, golden frogging tunic, royal scepter & shield with suit emblem
-// - Queen (Dame): Diadem, side-buns, lace ruff, bow chemise, golden rose & suit emblem
-// - Jack (Bube): Renaissance beret with sweeping ostrich plume, fur collar, chevron doublet, halberd & sword hilt
-// - Colors: Two-color deck (Black for Clubs/Spades, Green for Diamonds/Hearts)
+// Single-direction (ungespiegelt) classical royal portraits with rich gradients,
+// anatomical hands, fine woodcut-style shading, and prominent beverage vessels.
 const COURT_SUIT_THEMES = {
   clubs: {
     key: 'clubs',
     color: '#1a1a1a',
     isDark: true,
-    tunicK: '#15803d',  // Forest green
-    mantleK: '#b91c1c', // Crimson velvet
-    bodiceQ: '#b91c1c', // Crimson bodice
-    bowsQ: '#0284c7',   // Sapphire blue bows
-    doubletJ: '#0284c7',// Blue doublet
-    beretJ: '#15803d'   // Green beret
+    tunicK: '#166534',      // Deep forest emerald
+    tunicKDark: '#052e16',
+    mantleK: '#b91c1c',     // Royal crimson velvet
+    mantleKDark: '#7f1d1d',
+    bodiceQ: '#be123c',     // Rich ruby crimson
+    bodiceQDark: '#881337',
+    bowsQ: '#0284c7',       // Sapphire blue bows
+    doubletJ: '#1d4ed8',    // Royal sapphire doublet
+    doubletJDark: '#1e3a8a',
+    beretJ: '#15803d'       // Emerald velvet beret
   },
   spades: {
     key: 'spades',
     color: '#072210',
     isDark: true,
-    tunicK: '#1d4ed8',  // Royal blue
+    tunicK: '#1d4ed8',      // Imperial sapphire blue
+    tunicKDark: '#1e3a8a',
     mantleK: '#b91c1c',
-    bodiceQ: '#15803d', // Green bodice
-    bowsQ: '#dc2626',   // Ruby bows
-    doubletJ: '#15803d',// Green doublet
-    beretJ: '#b91c1c'   // Red beret
+    mantleKDark: '#7f1d1d',
+    bodiceQ: '#15803d',     // Emerald velvet bodice
+    bodiceQDark: '#14532d',
+    bowsQ: '#dc2626',       // Crimson bows
+    doubletJ: '#15803d',    // Forest emerald doublet
+    doubletJDark: '#14532d',
+    beretJ: '#b91c1c'       // Crimson velvet beret
   },
   hearts: {
     key: 'hearts',
     color: '#b45309',
     isDark: false,
-    tunicK: '#b91c1c',  // Red tunic
+    tunicK: '#b91c1c',      // Crimson tunic
+    tunicKDark: '#7f1d1d',
     mantleK: '#991b1b',
-    bodiceQ: '#15803d', // Green bodice
-    bowsQ: '#dc2626',   // Ruby bows
-    doubletJ: '#0284c7',// Blue doublet
-    beretJ: '#b91c1c'   // Red beret
+    mantleKDark: '#450a0a',
+    bodiceQ: '#15803d',     // Emerald bodice
+    bodiceQDark: '#14532d',
+    bowsQ: '#e11d48',       // Rose-ruby bows
+    doubletJ: '#0369a1',    // Cerulean blue doublet
+    doubletJDark: '#0c4a6e',
+    beretJ: '#b91c1c'       // Crimson beret
   },
   diamonds: {
     key: 'diamonds',
     color: '#c25e00',
     isDark: false,
-    tunicK: '#0284c7',  // Blue tunic
+    tunicK: '#0369a1',      // Royal cerulean tunic
+    tunicKDark: '#0c4a6e',
     mantleK: '#b91c1c',
-    bodiceQ: '#0284c7', // Blue bodice
-    bowsQ: '#f59e0b',   // Gold bows
-    doubletJ: '#0284c7',// Blue doublet
-    beretJ: '#15803d'   // Green beret
+    mantleKDark: '#7f1d1d',
+    bodiceQ: '#1d4ed8',     // Sapphire bodice
+    bodiceQDark: '#1e3a8a',
+    bowsQ: '#f59e0b',       // Amber-gold bows
+    doubletJ: '#1d4ed8',    // Sapphire doublet
+    doubletJDark: '#1e3a8a',
+    beretJ: '#15803d'       // Emerald beret
   }
 };
 
 function getCourtEmblemSVG(suitKey) {
   switch (suitKey) {
-    case 'clubs': // 🍺 Bierglas mit Henkel (Schwarzbier)
+    case 'clubs': // 🍺 Großes Bierglas mit Henkel (Schwarzbier)
       return `
-        <g transform="scale(0.95) translate(-1, -1)">
-          <path d="M3 0 C7.5 0, 7.5 7, 2.5 7 C6 6.5, 6 1, 3 1 Z" fill="rgba(255,255,255,0.25)" stroke="#64748b" stroke-width="0.8"/>
-          <path d="M-4.5 8 L-4.2 9.5 Q-4.2 10.5 -2.5 10.5 L1.5 10.5 Q3.2 10.5 3.2 9.5 L3.5 8 Z" fill="#94a3b8" stroke="#475569" stroke-width="0.6"/>
-          <path d="M-4.5 -1 L-3.5 8 L2.5 8 L3.5 -1 Z" fill="#1a0a03" stroke="#000000" stroke-width="0.7"/>
-          <path d="M-3.5 0 L-2.8 7" stroke="#ffffff" stroke-width="0.7" stroke-linecap="round" opacity="0.8"/>
-          <path d="M-5 -1 C-5.5 -3.5, -2.5 -4.5, -1 -3.5 C0.5 -5, 3 -4.5, 3.5 -2.5 C4.5 -2, 4.5 -0.5, 3.5 0 C2.5 1, -4.5 1, -5 -1 Z" fill="#fef3c7" stroke="#d97706" stroke-width="0.6"/>
+        <g transform="scale(1.38) translate(-1, 0)">
+          <!-- Handle -->
+          <path d="M3.6 -0.8 C8.5 -0.8, 8.8 7.6, 3.2 7.6 C6.6 7, 6.6 0.4, 3.6 0.6 Z" fill="rgba(255,255,255,0.5)" stroke="#334155" stroke-width="0.9"/>
+          <!-- Heavy Base -->
+          <path d="M-5.2 7.6 L-4.8 9.6 Q-4.6 10.8 -2.5 10.8 L1.8 10.8 Q3.8 10.8 4 9.6 L4.4 7.6 Z" fill="#cbd5e1" stroke="#334155" stroke-width="0.7"/>
+          <!-- Dark Beer Liquid -->
+          <path d="M-5.4 -1.5 L-4.4 8.2 L3.6 8.2 L4.6 -1.5 Z" fill="#180802" stroke="#0f172a" stroke-width="0.8"/>
+          <line x1="2.4" y1="-0.5" x2="1.8" y2="7.2" stroke="#b45309" stroke-width="0.9" opacity="0.85"/>
+          <line x1="-1.2" y1="-0.5" x2="-1.2" y2="7.2" stroke="rgba(255,255,255,0.25)" stroke-width="0.7"/>
+          <path d="M-3.8 -0.4 L-3.1 7.2" stroke="#ffffff" stroke-width="1.05" stroke-linecap="round" opacity="0.95"/>
+          <!-- Creamy Foam Head -->
+          <path d="M-5.8 -1.4 C-6.4 -4.2, -3.2 -5.4, -1.2 -4.0 C0.4 -6.0, 3.4 -5.5, 4.2 -3.4 C5.5 -2.8, 5.5 -0.6, 4.4 -0.2 C3.2 1.0, -5.0 1.0, -5.8 -1.4 Z" fill="#fef3c7" stroke="#b45309" stroke-width="0.7"/>
+          <circle cx="-2.2" cy="-2.8" r="0.9" fill="#ffffff" opacity="0.9"/>
+          <circle cx="1.2" cy="-3.6" r="1.1" fill="#ffffff" opacity="0.95"/>
         </g>
       `;
 
-    case 'spades': // 🥃 Shotglas dunkelgrün kurz vor schwarz
+    case 'spades': // 🥃 Kleines Shotglas dunkelgrün kurz vor schwarz
       return `
-        <g transform="scale(0.72) translate(0, 1)">
-          <path d="M-4 -5.5 L-2.8 5 Q-2.8 6.5 0 6.5 Q2.8 6.5 2.8 5 L4 -5.5 Z" fill="#061d0d" stroke="#000000" stroke-width="0.8"/>
-          <path d="M-2.8 4 L-2.6 6 Q-2.6 7 0 7 Q2.6 7 2.6 6 L2.8 4 Z" fill="#374151" stroke="#1f2937" stroke-width="0.5"/>
-          <ellipse cx="0" cy="-5.5" rx="4" ry="1.3" fill="#0f381e" stroke="#041208" stroke-width="0.6"/>
-          <line x1="-2.2" y1="-3.2" x2="-1.6" y2="4" stroke="#ffffff" stroke-width="0.75" stroke-linecap="round" opacity="0.9"/>
+        <g transform="scale(1.02) translate(0, 1)">
+          <!-- Crystal Base -->
+          <path d="M-3.1 4.2 L-2.8 6.4 Q-2.7 7.5 0 7.5 Q2.7 7.5 2.8 6.4 L3.1 4.2 Z" fill="#64748b" stroke="#0f172a" stroke-width="0.65"/>
+          <!-- Dark Green Liquid -->
+          <path d="M-4.3 -5.2 L-3.0 5.0 L3.0 5.0 L4.3 -5.2 Z" fill="#05180c" stroke="#0f172a" stroke-width="0.85"/>
+          <path d="M-3.5 -3.0 L-2.6 4.4 L2.6 4.4 L3.5 -3.0 Z" fill="#092614"/>
+          <ellipse cx="0" cy="-3.0" rx="3.5" ry="1.0" fill="#144526" stroke="#041208" stroke-width="0.5"/>
+          <ellipse cx="0" cy="-5.2" rx="4.3" ry="1.25" fill="rgba(255,255,255,0.4)" stroke="#334155" stroke-width="0.7"/>
+          <line x1="-2.5" y1="-3.5" x2="-1.8" y2="4.0" stroke="#ffffff" stroke-width="0.9" stroke-linecap="round" opacity="0.95"/>
         </g>
       `;
 
-    case 'hearts': // 🍺 Bierglas mit Henkel (Pilsbier)
+    case 'hearts': // 🍺 Großes Bierglas mit Henkel (Pilsbier)
       return `
-        <g transform="scale(0.95) translate(-1, -1)">
-          <path d="M3 0 C7.5 0, 7.5 7, 2.5 7 C6 6.5, 6 1, 3 1 Z" fill="rgba(255,255,255,0.3)" stroke="#94a3b8" stroke-width="0.8"/>
-          <path d="M-4.5 8 L-4.2 9.5 Q-4.2 10.5 -2.5 10.5 L1.5 10.5 Q3.2 10.5 3.2 9.5 L3.5 8 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.6"/>
-          <path d="M-4.5 -1 L-3.5 8 L2.5 8 L3.5 -1 Z" fill="#facc15" stroke="#b45309" stroke-width="0.7"/>
-          <path d="M-3.5 0 L-2.8 7" stroke="#ffffff" stroke-width="0.7" stroke-linecap="round" opacity="0.9"/>
-          <path d="M-5 -1 C-5.5 -3.5, -2.5 -4.5, -1 -3.5 C0.5 -5, 3 -4.5, 3.5 -2.5 C4.5 -2, 4.5 -0.5, 3.5 0 C2.5 1, -4.5 1, -5 -1 Z" fill="#ffffff" stroke="#94a3b8" stroke-width="0.6"/>
+        <g transform="scale(1.38) translate(-1, 0)">
+          <!-- Handle -->
+          <path d="M3.6 -0.8 C8.5 -0.8, 8.8 7.6, 3.2 7.6 C6.6 7, 6.6 0.4, 3.6 0.6 Z" fill="rgba(255,255,255,0.55)" stroke="#475569" stroke-width="0.9"/>
+          <!-- Heavy Base -->
+          <path d="M-5.2 7.6 L-4.8 9.6 Q-4.6 10.8 -2.5 10.8 L1.8 10.8 Q3.8 10.8 4 9.6 L4.4 7.6 Z" fill="#e2e8f0" stroke="#475569" stroke-width="0.7"/>
+          <!-- Golden Pils Liquid -->
+          <path d="M-5.4 -1.5 L-4.4 8.2 L3.6 8.2 L4.6 -1.5 Z" fill="#facc15" stroke="#9a3412" stroke-width="0.8"/>
+          <circle cx="-1.5" cy="4.5" r="0.55" fill="#ffffff" opacity="0.9"/>
+          <circle cx="1.2" cy="2.5" r="0.5" fill="#ffffff" opacity="0.9"/>
+          <line x1="-1.2" y1="-0.5" x2="-1.2" y2="7.2" stroke="rgba(255,255,255,0.45)" stroke-width="0.7"/>
+          <path d="M-3.8 -0.4 L-3.1 7.2" stroke="#ffffff" stroke-width="1.05" stroke-linecap="round" opacity="0.95"/>
+          <!-- Snow-White Foam Head -->
+          <path d="M-5.8 -1.4 C-6.4 -4.2, -3.2 -5.4, -1.2 -4.0 C0.4 -6.0, 3.4 -5.5, 4.2 -3.4 C5.5 -2.8, 5.5 -0.6, 4.4 -0.2 C3.2 1.0, -5.0 1.0, -5.8 -1.4 Z" fill="#ffffff" stroke="#64748b" stroke-width="0.7"/>
+          <circle cx="-2.2" cy="-2.8" r="0.9" fill="#ffffff"/>
+          <circle cx="1.2" cy="-3.6" r="1.1" fill="#ffffff"/>
         </g>
       `;
 
-    case 'diamonds': // 🥃 Shotglas transparent hell-gelb (Holunderschnaps)
+    case 'diamonds': // 🥃 Kleines Shotglas transparent hell-gelb (Holunderschnaps)
       return `
-        <g transform="scale(0.72) translate(0, 1)">
-          <path d="M-4 -5.5 L-2.8 5 Q-2.8 6.5 0 6.5 Q2.8 6.5 2.8 5 L4 -5.5 Z" fill="#fef08a" stroke="#ca8a04" stroke-width="0.8"/>
-          <path d="M-2.8 4 L-2.6 6 Q-2.6 7 0 7 Q2.6 7 2.6 6 L2.8 4 Z" fill="#fef9c3" stroke="#ca8a04" stroke-width="0.5"/>
-          <ellipse cx="0" cy="-5.5" rx="4" ry="1.3" fill="#fffbeb" stroke="#d97706" stroke-width="0.6"/>
-          <line x1="-2.2" y1="-3.2" x2="-1.6" y2="4" stroke="#ffffff" stroke-width="0.75" stroke-linecap="round" opacity="0.9"/>
+        <g transform="scale(1.02) translate(0, 1)">
+          <!-- Crystal Base -->
+          <path d="M-3.1 4.2 L-2.8 6.4 Q-2.7 7.5 0 7.5 Q2.7 7.5 2.8 6.4 L3.1 4.2 Z" fill="#fef3c7" stroke="#9a3412" stroke-width="0.65"/>
+          <!-- Pale Golden Liquid -->
+          <path d="M-4.3 -5.2 L-3.0 5.0 L3.0 5.0 L4.3 -5.2 Z" fill="rgba(254,249,195,0.45)" stroke="#9a3412" stroke-width="0.85"/>
+          <path d="M-3.5 -2.8 L-2.6 4.4 L2.6 4.4 L3.5 -2.8 Z" fill="#fde047"/>
+          <ellipse cx="0" cy="-2.8" rx="3.5" ry="1.0" fill="#fffbeb" stroke="#ca8a04" stroke-width="0.5"/>
+          <ellipse cx="0" cy="-5.2" rx="4.3" ry="1.25" fill="rgba(255,255,255,0.5)" stroke="#9a3412" stroke-width="0.7"/>
+          <line x1="-2.5" y1="-3.5" x2="-1.8" y2="4.0" stroke="#ffffff" stroke-width="0.9" stroke-linecap="round" opacity="0.95"/>
         </g>
       `;
 
@@ -1350,488 +1444,659 @@ function getCourtEmblemSVG(suitKey) {
   }
 }
 
-function renderKingFigureSVG(suit) {
-  const gold = '#d97706';
-  const goldLight = '#fde047';
-  const goldDark = '#78350f';
-  const goldRim = '#fbbf24';
+function renderKingFigureSVG(suit, uid) {
   const emblem = getCourtEmblemSVG(suit.key || suit.name);
 
   return `
     <g>
-      <!-- Velvet Royal Mantle Robe -->
-      <path d="M 22 55 C 16 75, 15 110, 18 138 L 82 138 C 85 110, 84 75, 78 55 Z" fill="${suit.mantleK}" stroke="#111827" stroke-width="1"/>
-      <path d="M 20 80 C 23 100, 24 120, 26 138" stroke="#7f1d1d" stroke-width="1.2" fill="none"/>
-      <path d="M 80 80 C 77 100, 76 120, 74 138" stroke="#7f1d1d" stroke-width="1.2" fill="none"/>
+      <!-- Warm Portrait Halo Behind Bust -->
+      <ellipse cx="52" cy="70" rx="40" ry="54" fill="url(#auraGrad_${uid})"/>
 
-      <!-- Royal Tunic Skirt & Gold Hem at Bottom -->
-      <path d="M 32 90 L 68 90 L 72 138 L 28 138 Z" fill="${suit.tunicK}" stroke="#111827" stroke-width="1"/>
-      <line x1="28" y1="134" x2="72" y2="134" stroke="${goldRim}" stroke-width="2.2"/>
-      <line x1="29" y1="131" x2="71" y2="131" stroke="${goldLight}" stroke-width="1"/>
-      <line x1="50" y1="92" x2="50" y2="134" stroke="${goldRim}" stroke-width="1.6"/>
-      <circle cx="50" cy="100" r="1.3" fill="${goldLight}" stroke="${goldDark}" stroke-width="0.5"/>
-      <circle cx="50" cy="112" r="1.3" fill="${goldLight}" stroke="${goldDark}" stroke-width="0.5"/>
-      <circle cx="50" cy="124" r="1.3" fill="${goldLight}" stroke="${goldDark}" stroke-width="0.5"/>
+      <!-- Clip/Mask Path for Clean Portrait Base (Leaves Bottom-Right Index Unobstructed) -->
+      <clipPath id="kingClip_${uid}">
+        <path d="M 4 0 L 96 0 L 96 116 Q 96 134 68 135 L 22 135 Q 6 135 6 118 Z"/>
+      </clipPath>
 
-      <!-- Royal Waist Belt with Ornate Gold Buckle -->
-      <rect x="33" y="85" width="34" height="6.5" rx="1.2" fill="#78350f" stroke="#451a03" stroke-width="0.8"/>
-      <rect x="46" y="83.5" width="8" height="9.5" rx="1.5" fill="${goldLight}" stroke="${goldDark}" stroke-width="0.8"/>
-      <circle cx="50" cy="88" r="1.5" fill="#dc2626"/>
+      <g clip-path="url(#kingClip_${uid})">
+        <!-- Broad Royal Crimson Velvet Mantle Draped Over Shoulders -->
+        <path d="M 10 136 C 8 102, 12 72, 26 62 L 74 62 C 88 72, 92 102, 90 136 Z" fill="url(#mantleGrad_${uid})" stroke="#1e1b18" stroke-width="1.15"/>
+        <!-- Deep Velvet Sleeve & Mantle Folds -->
+        <path d="M 15 82 C 13 100, 14 118, 16 135" stroke="${suit.mantleKDark}" stroke-width="2.0" fill="none" opacity="0.75"/>
+        <path d="M 21 90 C 19 106, 20 120, 22 135" stroke="#450a0a" stroke-width="1.2" fill="none" opacity="0.6"/>
+        <path d="M 85 82 C 87 100, 86 118, 84 135" stroke="${suit.mantleKDark}" stroke-width="2.0" fill="none" opacity="0.75"/>
 
-      <!-- Ermine fur stole (Hermelinkragen) draped over shoulders -->
-      <path d="M 26 88 L 24 50 C 25 42, 34 39, 40 39 L 42 88 Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.9"/>
-      <path d="M 74 88 L 76 50 C 75 42, 66 39, 60 39 L 58 88 Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.9"/>
-      <!-- Black ermine tail spots -->
-      <g fill="#0f172a">
-        <path d="M 30 50 C 29 52, 28 54, 28 56 C 30 55, 31 55, 32 56 C 32 54, 31 52, 30 50 Z"/>
-        <line x1="30" y1="56" x2="30" y2="58" stroke="#0f172a" stroke-width="0.8"/>
-        <path d="M 34 64 C 33 66, 32 68, 32 70 C 34 69, 35 69, 36 70 C 36 68, 35 66, 34 64 Z"/>
-        <line x1="34" y1="70" x2="34" y2="72" stroke="#0f172a" stroke-width="0.8"/>
-        <path d="M 32 78 C 31 80, 30 82, 30 84 C 32 83, 33 83, 34 84 C 34 82, 33 80, 32 78 Z"/>
-        <line x1="32" y1="84" x2="32" y2="86" stroke="#0f172a" stroke-width="0.8"/>
-        <path d="M 70 50 C 69 52, 68 54, 68 56 C 70 55, 71 55, 72 56 C 72 54, 71 52, 70 50 Z"/>
-        <line x1="70" y1="56" x2="70" y2="58" stroke="#0f172a" stroke-width="0.8"/>
-        <path d="M 66 64 C 65 66, 64 68, 64 70 C 66 69, 67 69, 68 70 C 68 68, 67 66, 66 64 Z"/>
-        <line x1="66" y1="70" x2="66" y2="72" stroke="#0f172a" stroke-width="0.8"/>
-        <path d="M 68 78 C 67 80, 66 82, 66 84 C 68 83, 69 83, 70 84 C 70 82, 69 80, 68 78 Z"/>
-        <line x1="68" y1="84" x2="68" y2="86" stroke="#0f172a" stroke-width="0.8"/>
-      </g>
-
-      <!-- Doublet (Chest) -->
-      <path d="M 38 40 L 62 40 L 64 85 L 36 85 Z" fill="${suit.tunicK}" stroke="#111827" stroke-width="1"/>
-      <path d="M 22 52 C 16 58, 17 72, 23 78 L 26 68 Z" fill="#991b1b" stroke="#111827" stroke-width="0.8"/>
-      <path d="M 78 52 C 84 58, 83 72, 77 78 L 74 68 Z" fill="#991b1b" stroke="#111827" stroke-width="0.8"/>
-
-      <!-- Golden Frog Braids on Chest -->
-      <g stroke="${goldRim}" stroke-width="1.8" stroke-linecap="round">
-        <line x1="42" y1="48" x2="58" y2="48"/>
-        <line x1="40" y1="56" x2="60" y2="56"/>
-        <line x1="39" y1="64" x2="61" y2="64"/>
-        <line x1="38" y1="72" x2="62" y2="72"/>
-        <line x1="38" y1="80" x2="62" y2="80"/>
-      </g>
-      <!-- Center Gold Buttons -->
-      <g fill="${goldLight}" stroke="${goldDark}" stroke-width="0.6">
-        <circle cx="50" cy="48" r="1.5"/>
-        <circle cx="50" cy="56" r="1.5"/>
-        <circle cx="50" cy="64" r="1.5"/>
-        <circle cx="50" cy="72" r="1.5"/>
-        <circle cx="50" cy="80" r="1.5"/>
-        <circle cx="42" cy="48" r="1.1"/>
-        <circle cx="58" cy="48" r="1.1"/>
-        <circle cx="40" cy="56" r="1.1"/>
-        <circle cx="60" cy="56" r="1.1"/>
-        <circle cx="39" cy="64" r="1.1"/>
-        <circle cx="61" cy="64" r="1.1"/>
-        <circle cx="38" cy="72" r="1.1"/>
-        <circle cx="62" cy="72" r="1.1"/>
-        <circle cx="38" cy="80" r="1.1"/>
-        <circle cx="62" cy="80" r="1.1"/>
-      </g>
-
-      <!-- Wavy Chestnut Hair Locks -->
-      <g fill="#451a03" stroke="#1c0b02" stroke-width="0.8">
-        <path d="M 40 22 C 33 26, 30 35, 33 46 C 36 48, 39 46, 40 42 C 37 36, 37 28, 40 24 Z"/>
-        <path d="M 34 34 C 31 39, 32 46, 36 49 C 37 47, 37 44, 35 40 Z"/>
-        <path d="M 60 22 C 67 26, 70 35, 67 46 C 64 48, 61 44, 60 42 C 63 36, 63 28, 60 24 Z"/>
-        <path d="M 66 34 C 69 39, 68 46, 64 49 C 63 47, 63 44, 65 40 Z"/>
-      </g>
-
-      <!-- Head, Face & Neck (Graceful 3/4 royal angle) -->
-      <path d="M 43 22 C 43 32, 45 37, 50 38.5 C 55 37, 57 32, 57 22 Z" fill="#fed7aa" stroke="#c2410c" stroke-width="0.6"/>
-      <path d="M 46 34 Q 50 37 54 34 Q 50 38.5 46 34 Z" fill="#f97316" opacity="0.35"/>
-
-      <!-- Scalloped White Lace Ruff Collar (Spitzenkragen) -->
-      <path d="M 38 38 C 42 42, 50 44, 62 38 C 64 42, 58 46, 50 46 C 42 46, 36 42, 38 38 Z" fill="#ffffff" stroke="#94a3b8" stroke-width="0.8"/>
-      <g fill="#cbd5e1">
-        <circle cx="41" cy="41" r="0.7"/>
-        <circle cx="45" cy="43" r="0.7"/>
-        <circle cx="50" cy="44" r="0.7"/>
-        <circle cx="55" cy="43" r="0.7"/>
-        <circle cx="59" cy="41" r="0.7"/>
-      </g>
-      <ellipse cx="50" cy="42" rx="1.8" ry="1.4" fill="#dc2626" stroke="${gold}" stroke-width="0.6"/>
-
-      <!-- Facial Features -->
-      <circle cx="45" cy="28" r="2.2" fill="#f87171" opacity="0.25"/>
-      <circle cx="55" cy="28" r="2.2" fill="#f87171" opacity="0.25"/>
-      <path d="M 44.5 25 Q 47 23.5 49.5 25 Q 47 26.5 44.5 25 Z" fill="#ffffff" stroke="#111827" stroke-width="0.5"/>
-      <circle cx="47.2" cy="25" r="1.2" fill="#1d4ed8"/>
-      <circle cx="47.2" cy="25" r="0.6" fill="#0f172a"/>
-      <circle cx="46.8" cy="24.7" r="0.35" fill="#ffffff"/>
-      <path d="M 44.2 24.5 Q 47 23.2 49.8 24.5" stroke="#111827" stroke-width="0.9" fill="none" stroke-linecap="round"/>
-
-      <path d="M 52.5 25 Q 55 23.5 57.5 25 Q 55 26.5 52.5 25 Z" fill="#ffffff" stroke="#111827" stroke-width="0.5"/>
-      <circle cx="54.8" cy="25" r="1.2" fill="#1d4ed8"/>
-      <circle cx="54.8" cy="25" r="0.6" fill="#0f172a"/>
-      <circle cx="54.4" cy="24.7" r="0.35" fill="#ffffff"/>
-      <path d="M 52.2 24.5 Q 55 23.2 57.8 24.5" stroke="#111827" stroke-width="0.9" fill="none" stroke-linecap="round"/>
-
-      <path d="M 43.5 22.8 Q 46.8 20.8 49.8 22.5" stroke="#261005" stroke-width="1.1" fill="none" stroke-linecap="round"/>
-      <path d="M 52.2 22.5 Q 55.2 20.8 58.5 22.8" stroke="#261005" stroke-width="1.1" fill="none" stroke-linecap="round"/>
-
-      <path d="M 50.2 22 L 50.8 28.5 Q 51 30 49.2 30.5" stroke="#7c2d12" stroke-width="0.9" fill="none" stroke-linecap="round"/>
-      <path d="M 47.8 29.5 Q 49 30.8 50.2 30" stroke="#9a3412" stroke-width="0.6" fill="none"/>
-
-      <path d="M 44 30.5 C 47 32.5, 49.5 30.8, 50.5 31.5 C 51.5 30.8, 54 32.5, 57 30.5 C 55 34, 51.5 33.5, 50.5 33 C 49.5 33.5, 46 34, 44 30.5 Z" fill="#451a03" stroke="#1c0b02" stroke-width="0.6"/>
-      <path d="M 48.5 34.5 Q 50.5 39 52.5 34.5 Z" fill="#451a03" stroke="#1c0b02" stroke-width="0.5"/>
-      <path d="M 49.2 32.5 Q 50.5 33.2 51.8 32.5" stroke="#991b1b" stroke-width="0.7" fill="none"/>
-
-      <!-- Imperial Arched Bügelkrone (Crown) -->
-      <path d="M 39 16 Q 50 8 61 16 Z" fill="#991b1b" stroke="#7f1d1d" stroke-width="0.6"/>
-      <rect x="37" y="15.5" width="26" height="4.5" rx="1" fill="${goldRim}" stroke="${goldDark}" stroke-width="0.7"/>
-      <circle cx="41" cy="17.8" r="1.1" fill="#dc2626"/>
-      <circle cx="45.5" cy="17.8" r="1.2" fill="#16a34a"/>
-      <circle cx="50" cy="17.8" r="1.3" fill="#dc2626"/>
-      <circle cx="54.5" cy="17.8" r="1.2" fill="#16a34a"/>
-      <circle cx="59" cy="17.8" r="1.1" fill="#dc2626"/>
-      <path d="M 38 15.5 Q 40.5 10 43 15.5 Z" fill="${goldLight}" stroke="${goldDark}" stroke-width="0.5"/>
-      <path d="M 47.5 15.5 Q 50 9 52.5 15.5 Z" fill="${goldLight}" stroke="${goldDark}" stroke-width="0.5"/>
-      <path d="M 57 15.5 Q 59.5 10 62 15.5 Z" fill="${goldLight}" stroke="${goldDark}" stroke-width="0.5"/>
-      <path d="M 41 15.5 Q 48 6.5 50 5.5 Q 52 6.5 59 15.5" stroke="${goldRim}" stroke-width="1.5" fill="none"/>
-      <g fill="#ffffff">
-        <circle cx="43.5" cy="11" r="0.6"/>
-        <circle cx="47" cy="8" r="0.6"/>
-        <circle cx="50" cy="6.5" r="0.7"/>
-        <circle cx="53" cy="8" r="0.6"/>
-        <circle cx="56.5" cy="11" r="0.6"/>
-      </g>
-      <circle cx="50" cy="4.5" r="1.4" fill="${goldLight}" stroke="${goldDark}" stroke-width="0.5"/>
-      <line x1="50" y1="1.8" x2="50" y2="4.2" stroke="${goldLight}" stroke-width="1.1"/>
-      <line x1="48.5" y1="2.8" x2="51.5" y2="2.8" stroke="${goldLight}" stroke-width="1.1"/>
-
-      <!-- Viewer's Right: Raised Left Hand Holding Tall Scepter -->
-      <g>
-        <line x1="77" y1="24" x2="77" y2="105" stroke="${gold}" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="77" y1="24" x2="77" y2="105" stroke="${goldLight}" stroke-width="1.1" stroke-linecap="round"/>
-        <ellipse cx="77" cy="37" rx="2.5" ry="1.5" fill="${goldRim}" stroke="${goldDark}" stroke-width="0.6"/>
-        <ellipse cx="77" cy="24" rx="3.2" ry="2.8" fill="${goldLight}" stroke="${goldDark}" stroke-width="0.7"/>
-        <polygon points="77,17 79.5,22 74.5,22" fill="#dc2626" stroke="${goldDark}" stroke-width="0.5"/>
-        <circle cx="77" cy="16" r="1.2" fill="${goldLight}"/>
-        <ellipse cx="77" cy="62" rx="3.8" ry="3.4" fill="#fed7aa" stroke="#c2410c" stroke-width="0.7"/>
-        <path d="M 75 59 C 77 59, 79 59, 80 60 M 75 62 C 77 62, 79 62, 80 63 M 75 65 C 77 65, 79 65, 80 66" stroke="#9a3412" stroke-width="0.6"/>
-        <rect x="73.5" y="65" width="7" height="3" rx="1" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
-      </g>
-
-      <!-- Viewer's Left: Hand Resting on Royal Shield/Orb with Embossed Suit Emblem -->
-      <g>
-        <ellipse cx="25" cy="78" rx="12" ry="10" fill="${goldRim}" stroke="${goldDark}" stroke-width="1.2"/>
-        <ellipse cx="25" cy="78" rx="9.5" ry="7.8" fill="#1e3a8a" stroke="${gold}" stroke-width="0.8"/>
-        <g stroke="${goldLight}" stroke-width="0.7" opacity="0.6">
-          <line x1="25" y1="70" x2="25" y2="86"/>
-          <line x1="17" y1="78" x2="33" y2="78"/>
-          <line x1="19" y1="72" x2="31" y2="84"/>
-          <line x1="19" y1="84" x2="31" y2="72"/>
+        <!-- Rich Brocaded Royal Tunic Chest -->
+        <path d="M 28 63 L 72 63 L 75 136 L 25 136 Z" fill="url(#tunicGrad_${uid})" stroke="#111827" stroke-width="1.1"/>
+        <!-- Ornate Vertical Gold Tapestry Band Down Center Chest -->
+        <rect x="46.5" y="64" width="7" height="72" fill="url(#goldVert_${uid})" stroke="#78350f" stroke-width="0.65"/>
+        <!-- Ribbed Brocade Texture Lines on Tunic -->
+        <line x1="40" y1="65" x2="39" y2="134" stroke="url(#goldVert_${uid})" stroke-width="1.2" opacity="0.85"/>
+        <line x1="60" y1="65" x2="61" y2="134" stroke="url(#goldVert_${uid})" stroke-width="1.2" opacity="0.85"/>
+        <!-- Horizontal Gold Bullion Frogging & Jeweled Clasps -->
+        <g stroke="url(#goldGrad_${uid})" stroke-width="2.3" stroke-linecap="round">
+          <path d="M 36 76 Q 50 79.5 64 76"/>
+          <path d="M 35 89 Q 50 92.5 65 89"/>
+          <path d="M 34 102 Q 50 105.5 66 102"/>
+          <path d="M 34 115 Q 50 118.5 66 115"/>
         </g>
-        <ellipse cx="25" cy="68" rx="4" ry="3" fill="#fed7aa" stroke="#c2410c" stroke-width="0.7"/>
-        <path d="M 22 67 Q 25 69 28 67 M 22 69 Q 25 71 28 69" stroke="#9a3412" stroke-width="0.5"/>
-        <rect x="21.5" y="64" width="7" height="3" rx="1" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
-        <g transform="translate(25, 78)">
-          ${emblem}
+        <g fill="#dc2626" stroke="#fef08a" stroke-width="0.65">
+          <circle cx="50" cy="77.5" r="2.0"/>
+          <circle cx="50" cy="90.5" r="2.0"/>
+          <circle cx="50" cy="103.5" r="2.0"/>
+          <circle cx="50" cy="116.5" r="2.0"/>
+        </g>
+
+        <!-- Wide, Plush Royal Ermine Fur Cape (Hermelinmantel) Over Shoulders -->
+        <path d="M 15 135 C 14 98, 17 70, 30 60 L 42 60 C 37 82, 36 108, 37 135 Z" fill="url(#ermineGrad_${uid})" stroke="#64748b" stroke-width="1.05"/>
+        <path d="M 85 135 C 86 98, 83 70, 70 60 L 58 60 C 63 82, 64 108, 63 135 Z" fill="url(#ermineGrad_${uid})" stroke="#64748b" stroke-width="1.05"/>
+        <!-- Authentic Black-Tipped Ermine Tails -->
+        <g fill="#0f172a">
+          <path d="M 25 71 L 23.5 77 L 25 75.8 L 26.5 77 Z"/><circle cx="25" cy="69.4" r="0.75"/>
+          <path d="M 32 83 L 30.5 89 L 32 87.8 L 33.5 89 Z"/><circle cx="32" cy="81.4" r="0.75"/>
+          <path d="M 23 96 L 21.5 102 L 23 100.8 L 24.5 102 Z"/><circle cx="23" cy="94.4" r="0.75"/>
+          <path d="M 31 112 L 29.5 118 L 31 116.8 L 32.5 118 Z"/><circle cx="31" cy="110.4" r="0.75"/>
+          <path d="M 75 71 L 73.5 77 L 75 75.8 L 76.5 77 Z"/><circle cx="75" cy="69.4" r="0.75"/>
+          <path d="M 68 83 L 66.5 89 L 68 87.8 L 69.5 89 Z"/><circle cx="68" cy="81.4" r="0.75"/>
+          <path d="M 77 96 L 75.5 102 L 77 100.8 L 78.5 102 Z"/><circle cx="77" cy="94.4" r="0.75"/>
+          <path d="M 69 112 L 67.5 118 L 69 116.8 L 70.5 118 Z"/><circle cx="69" cy="110.4" r="0.75"/>
+        </g>
+
+        <!-- Wavy Shoulder-Length Chestnut Hair Curls (Back Layer) -->
+        <g fill="url(#hairGrad_${uid})" stroke="#1c0a00" stroke-width="0.95">
+          <path d="M 35 28 C 25 33, 23 48, 27 62 C 31 66, 38 63, 39 56 C 35 48, 35 36, 35 28 Z"/>
+          <path d="M 65 28 C 75 33, 77 48, 73 62 C 69 66, 62 63, 61 56 C 65 48, 65 36, 65 28 Z"/>
+        </g>
+        <!-- Hair Highlight Waves -->
+        <path d="M 29 36 C 26 44, 27 53, 31 60 M 32 40 C 30 47, 31 54, 34 59" stroke="#b45309" stroke-width="0.85" fill="none" opacity="0.75" stroke-linecap="round"/>
+        <path d="M 71 36 C 74 44, 73 53, 69 60 M 68 40 C 70 47, 69 54, 66 59" stroke="#b45309" stroke-width="0.85" fill="none" opacity="0.75" stroke-linecap="round"/>
+
+        <!-- Crisp White Scalloped Lace Collar (Spitzenkragen) at Neckline -->
+        <path d="M 31 56 C 36 65, 44 68, 50 66 C 56 68, 64 65, 69 56 C 72 62, 64 71, 50 71 C 36 71, 28 62, 31 56 Z" fill="#ffffff" stroke="#94a3b8" stroke-width="0.95"/>
+        <path d="M 35 61 Q 42 67 50 64 Q 58 67 65 61" stroke="#cbd5e1" stroke-width="0.8" fill="none"/>
+        <!-- Jeweled Collar Brooch -->
+        <ellipse cx="50" cy="63.5" rx="3.4" ry="2.5" fill="#dc2626" stroke="url(#goldGrad_${uid})" stroke-width="0.95"/>
+        <circle cx="50" cy="63.5" r="1.0" fill="#fef08a"/>
+
+        <!-- Large Sculpted Noble Head & Face (3/4 Royal Turn) -->
+        <path d="M 36.5 25 C 36.5 41, 39.5 53, 50 57.5 C 60.5 53, 63.5 41, 63.5 25 Z" fill="url(#skinGrad_${uid})" stroke="#9a3412" stroke-width="0.85"/>
+        <!-- Subtle Cheekbone & Temple Modeling -->
+        <path d="M 39 36 C 39 43, 41.5 48, 45 51" stroke="#ea580c" stroke-width="1.6" fill="none" opacity="0.22" stroke-linecap="round"/>
+        <path d="M 61 36 C 61 43, 58.5 48, 55 51" stroke="#ea580c" stroke-width="1.6" fill="none" opacity="0.22" stroke-linecap="round"/>
+        <circle cx="42.5" cy="40" r="3.4" fill="#ea580c" opacity="0.14"/>
+        <circle cx="57.5" cy="40" r="3.4" fill="#ea580c" opacity="0.14"/>
+
+        <!-- Realistic Proportional Human Eyes, Eyelids & Noble Brows -->
+        <g>
+          <!-- Viewer's Left Eye -->
+          <path d="M 40.2 34.5 Q 44.0 32.3 47.5 34.5 Q 44.0 36.4 40.2 34.5 Z" fill="#ffffff" stroke="#1e1b18" stroke-width="0.65"/>
+          <circle cx="44.2" cy="34.4" r="1.55" fill="#1e3a8a"/>
+          <circle cx="44.2" cy="34.4" r="0.75" fill="#0f172a"/>
+          <circle cx="43.7" cy="33.9" r="0.45" fill="#ffffff"/>
+          <path d="M 39.8 34.0 Q 44.0 31.8 47.9 34.2" stroke="#1e1b18" stroke-width="1.05" fill="none" stroke-linecap="round"/>
+          <path d="M 41.0 36.5 Q 44.0 37.3 46.8 36.3" stroke="#9a3412" stroke-width="0.5" fill="none" opacity="0.55"/>
+          <path d="M 39.5 31.4 Q 44.0 29.2 48.2 31.2" stroke="#3b1806" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+          <!-- Viewer's Right Eye -->
+          <path d="M 52.5 34.5 Q 56.0 32.3 59.8 34.5 Q 56.0 36.4 52.5 34.5 Z" fill="#ffffff" stroke="#1e1b18" stroke-width="0.65"/>
+          <circle cx="55.8" cy="34.4" r="1.55" fill="#1e3a8a"/>
+          <circle cx="55.8" cy="34.4" r="0.75" fill="#0f172a"/>
+          <circle cx="55.3" cy="33.9" r="0.45" fill="#ffffff"/>
+          <path d="M 52.1 34.2 Q 56.0 31.8 60.2 34.0" stroke="#1e1b18" stroke-width="1.05" fill="none" stroke-linecap="round"/>
+          <path d="M 53.2 36.3 Q 56.0 37.3 59.0 36.5" stroke="#9a3412" stroke-width="0.5" fill="none" opacity="0.55"/>
+          <path d="M 51.8 31.2 Q 56.0 29.2 60.5 31.4" stroke="#3b1806" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        </g>
+
+        <!-- Sculpted Classical Nose Bridge & Nostril Shading -->
+        <path d="M 49.3 31.5 L 48.8 40.8 Q 48.8 42.6 50.4 42.9 Q 52.0 42.6 52.5 41.5" stroke="#9a3412" stroke-width="1.05" fill="none" stroke-linecap="round"/>
+        <path d="M 50.5 32.5 L 50.2 40.5" stroke="#ffedd5" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.8"/>
+        <path d="M 47.4 41.8 Q 48.8 43.0 50.2 42.5" stroke="#7c2d12" stroke-width="0.75" fill="none" stroke-linecap="round"/>
+
+        <!-- Full Sculpted Royal Beard & Sweeping Handlebar Mustache -->
+        <path d="M 39.5 47 C 37.5 54, 42 60, 48 61 L 50 59.5 L 52 61 C 58 60, 62.5 54, 60.5 47 Z" fill="url(#hairGrad_${uid})" stroke="#1c0a00" stroke-width="0.85"/>
+        <!-- Fine Beard Strand Highlights -->
+        <path d="M 43 50 C 43 54, 45 58, 47 59.5 M 50 49.5 L 50 59 M 57 50 C 57 54, 55 58, 53 59.5" stroke="#9a3412" stroke-width="0.75" fill="none" opacity="0.7"/>
+        <!-- Lower Lip Glimpse -->
+        <path d="M 47.2 46.8 Q 50 48.4 52.8 46.8" stroke="#be123c" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+        <!-- Regal Handlebar Mustache -->
+        <path d="M 38.5 45.2 C 42.5 48.2, 47.5 43.8, 50 45.2 C 52.5 43.8, 57.5 48.2, 61.5 45.2 C 59 49.2, 53.2 48.8, 50 47.0 C 46.8 48.8, 41 49.2, 38.5 45.2 Z" fill="url(#hairGrad_${uid})" stroke="#1c0a00" stroke-width="0.75"/>
+
+        <!-- Magnificent Imperial Bügelkrone (Crown) -->
+        <g>
+          <!-- Crimson Velvet Cap -->
+          <path d="M 33.5 23 C 31 11, 41 7.5, 50 12.5 C 59 7.5, 69 11, 66.5 23 Z" fill="url(#mantleGrad_${uid})" stroke="#450a0a" stroke-width="0.9"/>
+          <!-- Pearl-Studded Gold Arches -->
+          <path d="M 35.5 23 C 34 10.5, 43.5 7, 50 7 C 56.5 7, 66 10.5, 64.5 23" stroke="url(#goldGrad_${uid})" stroke-width="2.2" fill="none"/>
+          <line x1="50" y1="6.5" x2="50" y2="23" stroke="url(#goldGrad_${uid})" stroke-width="2.2"/>
+          <g fill="#ffffff" stroke="#94a3b8" stroke-width="0.35">
+            <circle cx="37" cy="15.5" r="0.9"/>
+            <circle cx="40.5" cy="11" r="0.9"/>
+            <circle cx="45" cy="8.2" r="0.9"/>
+            <circle cx="55" cy="8.2" r="0.9"/>
+            <circle cx="59.5" cy="11" r="0.9"/>
+            <circle cx="63" cy="15.5" r="0.9"/>
+            <circle cx="50" cy="11" r="0.85"/>
+            <circle cx="50" cy="15" r="0.85"/>
+          </g>
+          <!-- Ornate Golden Fleur Peaks -->
+          <path d="M 33 22 L 36.5 13 L 40.5 22 Z" fill="url(#goldGrad_${uid})" stroke="#78350f" stroke-width="0.7"/>
+          <path d="M 45.5 22 L 50 11 L 54.5 22 Z" fill="url(#goldGrad_${uid})" stroke="#78350f" stroke-width="0.7"/>
+          <path d="M 59.5 22 L 63.5 13 L 67 22 Z" fill="url(#goldGrad_${uid})" stroke="#78350f" stroke-width="0.7"/>
+          <!-- Heavy Jeweled Circlet Band -->
+          <rect x="32" y="21" width="36" height="6" rx="1.6" fill="url(#goldGrad_${uid})" stroke="#451a03" stroke-width="0.9"/>
+          <line x1="33.5" y1="22.3" x2="66.5" y2="22.3" stroke="#fef08a" stroke-width="0.7"/>
+          <circle cx="37" cy="24" r="1.45" fill="#dc2626" stroke="#451a03" stroke-width="0.45"/>
+          <circle cx="43.5" cy="24" r="1.5" fill="#16a34a" stroke="#451a03" stroke-width="0.45"/>
+          <polygon points="50,22 52,24 50,26 48,24" fill="#dc2626" stroke="#fef08a" stroke-width="0.5"/>
+          <circle cx="56.5" cy="24" r="1.5" fill="#16a34a" stroke="#451a03" stroke-width="0.45"/>
+          <circle cx="63" cy="24" r="1.45" fill="#dc2626" stroke="#451a03" stroke-width="0.45"/>
+          <!-- Globus Cruciger at Summit -->
+          <circle cx="50" cy="5.2" r="1.8" fill="url(#goldGrad_${uid})" stroke="#78350f" stroke-width="0.55"/>
+          <path d="M 50 1.2 L 50 4.0 M 48.2 2.5 L 51.8 2.5" stroke="#d97706" stroke-width="1.2" stroke-linecap="round"/>
+        </g>
+
+        <!-- Viewer's Right: Royal Sleeve, Lace Ruffle, Anatomical Hand & Golden Scepter -->
+        <g>
+          <!-- Scepter Shaft & Fleur Finial -->
+          <line x1="80" y1="28" x2="75" y2="136" stroke="#78350f" stroke-width="3.8" stroke-linecap="round"/>
+          <line x1="80" y1="28" x2="75" y2="136" stroke="url(#goldGrad_${uid})" stroke-width="2.4" stroke-linecap="round"/>
+          <ellipse cx="78.8" cy="52" rx="3.2" ry="1.6" fill="url(#goldGrad_${uid})" stroke="#78350f" stroke-width="0.65"/>
+          <path d="M 80 28 C 74 24, 74 17, 77.5 15.5 C 77.5 20, 78.8 22.5, 80 24 C 81.2 22.5, 82.5 20, 82.5 15.5 C 86 17, 86 24, 80 28 Z" fill="url(#goldGrad_${uid})" stroke="#78350f" stroke-width="0.7"/>
+          <polygon points="80,11.5 83,19.5 80,24.5 77,19.5" fill="#dc2626" stroke="#fde047" stroke-width="0.55"/>
+          <circle cx="80" cy="10.5" r="1.4" fill="#fde047" stroke="#78350f" stroke-width="0.45"/>
+
+          <!-- Pleated White Lace Cuff & Gold Sleeve Trim -->
+          <path d="M 73 96 L 85 99 L 83 106 L 71 102 Z" fill="url(#goldGrad_${uid})" stroke="#78350f" stroke-width="0.7"/>
+          <path d="M 72 90 C 76 87, 82 88, 84 94 L 73 97 Z" fill="#ffffff" stroke="#94a3b8" stroke-width="0.7"/>
+          <!-- Sculpted Hand & Fingers Gripping Scepter -->
+          <path d="M 73 84 C 72 81.5, 75 79.5, 78.5 80.5 L 83 82.5 C 85 84, 84.5 91, 81.5 92.5 L 74.5 91.5 C 72 90, 72 86.5, 73 84 Z" fill="url(#skinGrad_${uid})" stroke="#9a3412" stroke-width="0.8"/>
+          <path d="M 75.5 83.2 L 82.5 84.2 M 75.2 86.2 L 82.5 87.2 M 75.0 89.0 L 81.5 89.8" stroke="#9a3412" stroke-width="0.7" stroke-linecap="round"/>
+          <path d="M 72.8 84 C 74.8 82, 77.8 82.5, 77.8 84.8 C 76.5 86.2, 74 86.2, 72.8 84 Z" fill="url(#skinGrad_${uid})" stroke="#9a3412" stroke-width="0.65"/>
+        </g>
+
+        <!-- Viewer's Left: Royal Orb/Shield, Sculpted Hand & Prominent Suit Drink -->
+        <g>
+          <!-- Imperial Blue & Gold Orb / Shield (Reichsapfel) -->
+          <circle cx="28" cy="110" r="15.5" fill="url(#goldGrad_${uid})" stroke="#451a03" stroke-width="1.2"/>
+          <circle cx="28" cy="110" r="12.5" fill="#1e3a8a" stroke="#fde047" stroke-width="0.85"/>
+          <!-- Jeweled Cross Band on Orb -->
+          <path d="M 15.5 110 Q 28 114 40.5 110" stroke="url(#goldGrad_${uid})" stroke-width="2.4" fill="none"/>
+          <path d="M 28 97.5 L 28 122.5" stroke="url(#goldGrad_${uid})" stroke-width="2.4"/>
+          <circle cx="28" cy="110" r="2.2" fill="#dc2626" stroke="#fef08a" stroke-width="0.5"/>
+
+          <!-- King's Right Hand & Lace Cuff Holding Suit Drink Above Orb -->
+          <path d="M 18 93 L 31 90 L 32 95 L 19 98 Z" fill="#ffffff" stroke="#94a3b8" stroke-width="0.7"/>
+          <path d="M 19.5 86.5 C 21 83.5, 30.5 83.5, 32 86.5 C 32.8 90.5, 29.8 93.5, 25.5 93 C 21 92.5, 18.8 89.5, 19.5 86.5 Z" fill="url(#skinGrad_${uid})" stroke="#9a3412" stroke-width="0.8"/>
+          <path d="M 22 86.5 L 29.5 86.2 M 22 89.2 L 29.5 89.0" stroke="#9a3412" stroke-width="0.65" stroke-linecap="round"/>
+          <!-- Golden Coaster / Salver -->
+          <ellipse cx="27" cy="83.5" rx="9" ry="2.3" fill="url(#goldGrad_${uid})" stroke="#78350f" stroke-width="0.8"/>
+          <!-- Large Prominent Suit Drink -->
+          <g transform="translate(27, 71)">
+            ${emblem}
+          </g>
         </g>
       </g>
+
+      <!-- Ornate Curved Gold Portrait Base Trim -->
+      <path d="M 6 118 Q 6 135 22 135 L 68 135 Q 96 134 96 116" stroke="url(#goldGrad_${uid})" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <path d="M 9 124 Q 12 132 24 132 L 66 132 Q 86 132 92 121" stroke="#78350f" stroke-width="0.7" fill="none" opacity="0.6"/>
     </g>
   `;
 }
 
-function renderQueenFigureSVG(suit) {
-  const gold = '#d97706';
-  const goldLight = '#fde047';
-  const goldDark = '#78350f';
-  const goldRim = '#fbbf24';
+function renderQueenFigureSVG(suit, uid) {
   const emblem = getCourtEmblemSVG(suit.key || suit.name);
 
   return `
     <g>
-      <!-- Velvet Royal Mantle Robe -->
-      <path d="M 22 55 C 16 75, 15 110, 18 138 L 82 138 C 85 110, 84 75, 78 55 Z" fill="${suit.mantleK}" stroke="#111827" stroke-width="1"/>
-      <path d="M 20 80 C 23 100, 24 120, 26 138" stroke="#7f1d1d" stroke-width="1.2" fill="none"/>
-      <path d="M 80 80 C 77 100, 76 120, 74 138" stroke="#7f1d1d" stroke-width="1.2" fill="none"/>
+      <!-- Warm Portrait Halo Behind Bust -->
+      <ellipse cx="52" cy="70" rx="40" ry="54" fill="url(#auraGrad_${uid})"/>
 
-      <!-- Renaissance Brocade Skirt with Gold Ribbons -->
-      <path d="M 33 82 L 67 82 L 73 138 L 27 138 Z" fill="${suit.bodiceQ}" stroke="#111827" stroke-width="1"/>
-      <g stroke="${goldRim}" stroke-width="1.6">
-        <line x1="39" y1="84" x2="36" y2="136"/>
-        <line x1="45" y1="84" x2="44" y2="136"/>
-        <line x1="55" y1="84" x2="56" y2="136"/>
-        <line x1="61" y1="84" x2="64" y2="136"/>
-      </g>
-      <line x1="27" y1="134" x2="73" y2="134" stroke="${goldLight}" stroke-width="1.8"/>
+      <clipPath id="queenClip_${uid}">
+        <path d="M 4 0 L 96 0 L 96 116 Q 96 134 68 135 L 22 135 Q 6 135 6 118 Z"/>
+      </clipPath>
 
-      <!-- Standing Pleated Lace Ruff behind head -->
-      <path d="M 32 38 C 29 24, 34 20, 37 19 C 41 28, 42 34, 43 40 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8"/>
-      <path d="M 68 38 C 71 24, 66 20, 63 19 C 59 28, 58 34, 57 40 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8"/>
-      <g stroke="#94a3b8" stroke-width="0.6">
-        <line x1="33" y1="32" x2="39" y2="35"/>
-        <line x1="34" y1="26" x2="40" y2="30"/>
-        <line x1="67" y1="32" x2="61" y2="35"/>
-        <line x1="66" y1="26" x2="60" y2="30"/>
-      </g>
-
-      <!-- Bodice (Corset) with Gold Brocade Stays -->
-      <path d="M 37 40 L 63 40 L 67 82 L 33 82 Z" fill="${suit.bodiceQ}" stroke="#111827" stroke-width="1"/>
-      <g stroke="${goldRim}" stroke-width="1.6">
-        <line x1="42" y1="48" x2="40" y2="82"/>
-        <line x1="47" y1="48" x2="46" y2="82"/>
-        <line x1="53" y1="48" x2="54" y2="82"/>
-        <line x1="58" y1="48" x2="60" y2="82"/>
-      </g>
-
-      <!-- White Chemise Décolletage with Ribbon Bows -->
-      <path d="M 38 40 Q 50 46 62 40 L 61 52 Q 50 58 39 52 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8"/>
-      <g fill="${suit.bowsQ}" stroke="#0f172a" stroke-width="0.5">
-        <polygon points="49,45 44,42 44,48"/>
-        <polygon points="51,45 56,42 56,48"/>
-        <circle cx="50" cy="45" r="1.2" fill="${goldLight}"/>
-        <polygon points="49,53 44,50 44,56"/>
-        <polygon points="51,53 56,50 56,56"/>
-        <circle cx="50" cy="53" r="1.2" fill="${goldLight}"/>
-        <polygon points="49,61 44,58 44,64"/>
-        <polygon points="51,61 56,58 56,64"/>
-        <circle cx="50" cy="61" r="1.2" fill="${goldLight}"/>
-        <polygon points="49,69 44,66 44,72"/>
-        <polygon points="51,69 56,66 56,72"/>
-        <circle cx="50" cy="69" r="1.2" fill="${goldLight}"/>
-      </g>
-
-      <!-- Renaissance Coiled Side-Bun Hairstyle -->
-      <ellipse cx="36" cy="27" rx="4" ry="6" fill="#451a03" stroke="#1c0b02" stroke-width="0.8"/>
-      <ellipse cx="64" cy="27" rx="4" ry="6" fill="#451a03" stroke="#1c0b02" stroke-width="0.8"/>
-      <g stroke="${goldLight}" stroke-width="0.6" opacity="0.8">
-        <line x1="33" y1="25" x2="39" y2="29"/>
-        <line x1="33" y1="29" x2="39" y2="25"/>
-        <line x1="61" y1="25" x2="67" y2="29"/>
-        <line x1="61" y1="29" x2="67" y2="25"/>
-      </g>
-
-      <!-- Head, Face & Slender Neck -->
-      <path d="M 44 22 C 44 32, 46.5 37, 50 38.5 C 53.5 37, 56 32, 56 22 Z" fill="#fff1f2" stroke="#be185d" stroke-width="0.6"/>
-      <path d="M 47 34 Q 50 36.5 53 34" stroke="#fda4af" stroke-width="0.8" fill="none"/>
-
-      <!-- Golden Choker Necklace with Gem Pendant -->
-      <path d="M 45 36 Q 50 39.5 55 36" stroke="${goldRim}" stroke-width="1.4" stroke-dasharray="1.2,1.2" fill="none"/>
-      <circle cx="50" cy="38.5" r="1.5" fill="#0284c7" stroke="${goldDark}" stroke-width="0.5"/>
-
-      <!-- Cheeks & Eyes -->
-      <circle cx="45" cy="27.5" r="2.4" fill="#fb7185" opacity="0.35"/>
-      <circle cx="55" cy="27.5" r="2.4" fill="#fb7185" opacity="0.35"/>
-      <path d="M 45 24.5 Q 47.5 23.3 50 24.5 Q 47.5 25.7 45 24.5 Z" fill="#ffffff" stroke="#111827" stroke-width="0.5"/>
-      <circle cx="47.5" cy="24.5" r="1.1" fill="#0284c7"/>
-      <circle cx="47.5" cy="24.5" r="0.55" fill="#0f172a"/>
-      <circle cx="47.2" cy="24.2" r="0.3" fill="#ffffff"/>
-      <path d="M 44.8 24 Q 47.5 22.8 50.2 24" stroke="#111827" stroke-width="0.9" fill="none" stroke-linecap="round"/>
-      <line x1="44.2" y1="23.7" x2="44.8" y2="23" stroke="#111827" stroke-width="0.6"/>
-
-      <path d="M 52.5 24.5 Q 55 23.3 57.5 24.5 Q 55 25.7 52.5 24.5 Z" fill="#ffffff" stroke="#111827" stroke-width="0.5"/>
-      <circle cx="54.8" cy="24.5" r="1.1" fill="#0284c7"/>
-      <circle cx="54.8" cy="24.5" r="0.55" fill="#0f172a"/>
-      <circle cx="54.5" cy="24.2" r="0.3" fill="#ffffff"/>
-      <path d="M 52.2 24 Q 55 22.8 57.8 24" stroke="#111827" stroke-width="0.9" fill="none" stroke-linecap="round"/>
-      <line x1="57.8" y1="23.7" x2="58.4" y2="23" stroke="#111827" stroke-width="0.6"/>
-
-      <path d="M 44.2 22 Q 47.2 20.3 49.8 21.7" stroke="#451a03" stroke-width="0.9" fill="none" stroke-linecap="round"/>
-      <path d="M 52.2 21.7 Q 54.8 20.3 57.8 22" stroke="#451a03" stroke-width="0.9" fill="none" stroke-linecap="round"/>
-      <path d="M 50 22 L 50.5 27.5 Q 50.8 28.7 49.6 29" stroke="#be185d" stroke-width="0.8" fill="none" stroke-linecap="round"/>
-      <path d="M 48 31.2 Q 50 32.6 52 31.2" stroke="#e11d48" stroke-width="1.1" fill="none" stroke-linecap="round"/>
-      <path d="M 48.5 30.8 Q 50 30.2 51.5 30.8" stroke="#be123c" stroke-width="0.7" fill="none"/>
-
-      <!-- Golden Floral Diadem & Plume -->
-      <path d="M 41 16.5 Q 50 13 59 16.5" stroke="${goldRim}" stroke-width="1.8" fill="none"/>
-      <polygon points="44,15.5 45,10.5 46,15.5" fill="${goldLight}"/>
-      <polygon points="49.5,14.5 50,8.5 50.5,14.5" fill="${goldLight}"/>
-      <polygon points="54,15.5 55,10.5 56,15.5" fill="${goldLight}"/>
-      <circle cx="45" cy="10" r="0.8" fill="#ffffff"/>
-      <circle cx="50" cy="8" r="0.9" fill="#ffffff"/>
-      <circle cx="55" cy="10" r="0.8" fill="#ffffff"/>
-      <circle cx="50" cy="12.5" r="1.1" fill="#16a34a"/>
-      <path d="M 41 16.5 C 37 8.5, 42 4.5, 44 4.5 C 45 8.5, 44 12.5, 43 15.5 Z" fill="#10b981" stroke="#047857" stroke-width="0.6"/>
-
-      <!-- Viewer's Right: Hand Holding Blooming Golden Rose -->
-      <g>
-        <ellipse cx="76" cy="62" rx="3.4" ry="2.8" fill="#fed7aa" stroke="#be185d" stroke-width="0.6"/>
-        <rect x="73.5" y="64" width="6" height="3" rx="1" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.5"/>
-        <path d="M 76 62 Q 78 50 80 44" stroke="#15803d" stroke-width="1.1" fill="none"/>
-        <path d="M 77 52 Q 74 50 76 48 Z" fill="#16a34a"/>
-        <circle cx="80" cy="44" r="3.6" fill="${goldLight}" stroke="${goldDark}" stroke-width="0.6"/>
-        <g fill="#f59e0b">
-          <circle cx="80" cy="41" r="1"/>
-          <circle cx="83" cy="43" r="1"/>
-          <circle cx="82" cy="46" r="1"/>
-          <circle cx="78" cy="46" r="1"/>
-          <circle cx="77" cy="43" r="1"/>
+      <g clip-path="url(#queenClip_${uid})">
+        <!-- Flowing White Pleated Renaissance Veil & High Standing Medici Ruff Collar -->
+        <path d="M 22 68 C 18 40, 26 19, 37 18 L 63 18 C 74 19, 82 40, 78 68 Z" fill="#ffffff" stroke="#94a3b8" stroke-width="1.0"/>
+        <!-- Delicate Fan Pleats on Veil & Medici Ruff -->
+        <g stroke="#cbd5e1" stroke-width="0.75">
+          <line x1="23" y1="58" x2="37" y2="60"/>
+          <line x1="22" y1="49" x2="37" y2="53"/>
+          <line x1="24" y1="40" x2="38" y2="46"/>
+          <line x1="27" y1="31" x2="39" y2="39"/>
+          <line x1="77" y1="58" x2="63" y2="60"/>
+          <line x1="78" y1="49" x2="63" y2="53"/>
+          <line x1="76" y1="40" x2="62" y2="46"/>
+          <line x1="73" y1="31" x2="61" y2="39"/>
         </g>
-        <circle cx="80" cy="44" r="1.6" fill="#dc2626"/>
-      </g>
 
-      <!-- Viewer's Left: Hand Holding Suit Vessel/Item -->
-      <g>
-        <ellipse cx="24" cy="65" rx="3.6" ry="3" fill="#fed7aa" stroke="#be185d" stroke-width="0.6"/>
-        <rect x="21" y="67" width="6" height="3" rx="1" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.5"/>
-        <g transform="translate(24, 53)">
-          ${emblem}
+        <!-- Royal Velvet Mantle Draped Over Shoulders -->
+        <path d="M 10 136 C 8 102, 13 74, 27 65 L 73 65 C 87 74, 92 102, 90 136 Z" fill="url(#mantleGrad_${uid})" stroke="#1e1b18" stroke-width="1.15"/>
+        <path d="M 16 84 C 14 102, 15 118, 17 135" stroke="${suit.mantleKDark}" stroke-width="1.8" fill="none" opacity="0.75"/>
+        <path d="M 84 84 C 86 102, 85 118, 83 135" stroke="${suit.mantleKDark}" stroke-width="1.8" fill="none" opacity="0.75"/>
+
+        <!-- Puffed & Slashed Renaissance Sleeves -->
+        <path d="M 27 66 C 14 70, 10 88, 15 106 L 31 100 Z" fill="url(#bodiceGrad_${uid})" stroke="#111827" stroke-width="1.0"/>
+        <path d="M 73 66 C 86 70, 90 88, 85 106 L 69 100 Z" fill="url(#bodiceGrad_${uid})" stroke="#111827" stroke-width="1.0"/>
+        <!-- White Silk Puffs on Sleeves -->
+        <ellipse cx="19" cy="83" rx="3.2" ry="8" fill="#ffffff" stroke="url(#goldGrad_${uid})" stroke-width="0.85" transform="rotate(14 19 83)"/>
+        <ellipse cx="81" cy="83" rx="3.2" ry="8" fill="#ffffff" stroke="url(#goldGrad_${uid})" stroke-width="0.85" transform="rotate(-14 81 83)"/>
+
+        <!-- Rich Gold-Embroidered Brocade Corset Bodice -->
+        <path d="M 28 66 L 72 66 L 74 136 L 26 136 Z" fill="url(#bodiceGrad_${uid})" stroke="#111827" stroke-width="1.1"/>
+        <!-- Gold Brocade Stays on Sides of Corset -->
+        <line x1="33" y1="68" x2="36" y2="135" stroke="url(#goldVert_${uid})" stroke-width="2.0"/>
+        <line x1="38" y1="70" x2="41" y2="135" stroke="url(#goldVert_${uid})" stroke-width="1.3"/>
+        <line x1="67" y1="68" x2="64" y2="135" stroke="url(#goldVert_${uid})" stroke-width="2.0"/>
+        <line x1="62" y1="70" x2="59" y2="135" stroke="url(#goldVert_${uid})" stroke-width="1.3"/>
+
+        <!-- Center Cream-Silk Stomacher Panel -->
+        <path d="M 38 66 Q 50 73 62 66 L 57 136 L 43 136 Z" fill="#fffbeb" stroke="url(#goldGrad_${uid})" stroke-width="1.3"/>
+
+        <!-- Graceful Neck, Décolletage & Jeweled Royal Necklace -->
+        <path d="M 35 64 Q 50 74 65 64 L 58 51 L 42 51 Z" fill="url(#skinGrad_${uid})" stroke="#9a3412" stroke-width="0.65"/>
+        <!-- Ruffled White Off-Shoulder Chemise Lace Trim (Like Authentic Berliner Bild) -->
+        <path d="M 27 66 C 32 73, 41 76, 50 75 C 59 76, 68 73, 73 66 C 74 72, 63 80, 50 80 C 37 80, 26 72, 27 66 Z" fill="#ffffff" stroke="#94a3b8" stroke-width="0.9"/>
+        <path d="M 31 70 Q 40 76 50 74 Q 60 76 69 70" stroke="#cbd5e1" stroke-width="0.8" fill="none"/>
+
+        <!-- Iconic Berliner Bild Ribbon Bows (Schleifen) Down the Bodice & Shoulder Trim -->
+        <g fill="${suit.bowsQ}" stroke="#0f172a" stroke-width="0.65">
+          <!-- Shoulder Bows -->
+          <path d="M 33 69 L 27 65 C 26 68, 26 70, 28 72 Z"/>
+          <path d="M 33 69 L 38 67 C 39 69, 38 71, 37 73 Z"/>
+          <circle cx="33" cy="69" r="1.5" fill="#fde047"/>
+
+          <path d="M 67 69 L 62 67 C 61 69, 62 71, 63 73 Z"/>
+          <path d="M 67 69 L 73 65 C 74 68, 74 70, 72 72 Z"/>
+          <circle cx="67" cy="69" r="1.5" fill="#fde047"/>
+
+          <!-- Center Stomacher Bows -->
+          <path d="M 50 76 L 41 71.5 C 39.5 74.5, 39.5 77.5, 41 80.5 Z"/>
+          <path d="M 50 76 L 59 71.5 C 60.5 74.5, 60.5 77.5, 59 80.5 Z"/>
+          <circle cx="50" cy="76" r="1.9" fill="#fde047"/>
+
+          <path d="M 50 90 L 42 86 C 40.8 88.5, 40.8 91.5, 42 94 Z"/>
+          <path d="M 50 90 L 58 86 C 59.2 88.5, 59.2 91.5, 58 94 Z"/>
+          <circle cx="50" cy="90" r="1.8" fill="#fde047"/>
+
+          <path d="M 50 104 L 42.5 100.2 C 41.5 102.5, 41.5 105.5, 42.5 107.8 Z"/>
+          <path d="M 50 104 L 57.5 100.2 C 58.5 102.5, 58.5 105.5, 57.5 107.8 Z"/>
+          <circle cx="50" cy="104" r="1.8" fill="#fde047"/>
+
+          <path d="M 50 118 L 43 114.5 C 42 116.5, 42 119.5, 43 121.5 Z"/>
+          <path d="M 50 118 L 57 114.5 C 58 116.5, 58 119.5, 57 121.5 Z"/>
+          <circle cx="50" cy="118" r="1.8" fill="#fde047"/>
+        </g>
+
+        <!-- Royal Gold Choker & Jeweled Pendant on Décolletage -->
+        <path d="M 40.5 58 Q 50 64.5 59.5 58" stroke="url(#goldGrad_${uid})" stroke-width="2.2" fill="none"/>
+        <ellipse cx="50" cy="63.5" rx="2.8" ry="3.2" fill="${suit.bowsQ}" stroke="url(#goldGrad_${uid})" stroke-width="0.9"/>
+        <circle cx="49.3" cy="62.7" r="0.7" fill="#ffffff" opacity="0.85"/>
+
+        <!-- Sculpted Wavy Renaissance Coiffure Framing Face -->
+        <g fill="url(#hairGrad_${uid})" stroke="#1c0a00" stroke-width="0.95">
+          <path d="M 36 24 C 27 26, 26 42, 33 48 C 36 49, 38.5 45, 38.5 38 Z"/>
+          <path d="M 64 24 C 73 26, 74 42, 67 48 C 64 49, 61.5 45, 61.5 38 Z"/>
+        </g>
+        <!-- Warm Chestnut Hair Highlights & Pearl Hairpins -->
+        <path d="M 31 30 C 29 36, 30 42, 34 45 M 69 30 C 71 36, 70 42, 66 45" stroke="#b45309" stroke-width="0.85" fill="none" stroke-linecap="round" opacity="0.8"/>
+        <g fill="#ffffff" stroke="#94a3b8" stroke-width="0.35">
+          <circle cx="31.5" cy="33" r="1.0"/>
+          <circle cx="31.0" cy="38.5" r="1.0"/>
+          <circle cx="68.5" cy="33" r="1.0"/>
+          <circle cx="69.0" cy="38.5" r="1.0"/>
+        </g>
+        <!-- Pearl Drop Earrings -->
+        <circle cx="36.2" cy="45.5" r="1.65" fill="#ffffff" stroke="#94a3b8" stroke-width="0.45"/>
+        <circle cx="63.8" cy="45.5" r="1.65" fill="#ffffff" stroke="#94a3b8" stroke-width="0.45"/>
+
+        <!-- Graceful Sculpted Queen Portrait Face -->
+        <path d="M 37.5 24 C 37.5 40, 41 51, 50 54.5 C 59 51, 62.5 40, 62.5 24 Z" fill="url(#skinGrad_${uid})" stroke="#9a3412" stroke-width="0.8"/>
+        <!-- Soft Rosy Overlay for Delicate Complexion -->
+        <path d="M 38 24 C 38 40, 41.5 50.5, 50 54 C 58.5 50.5, 62 40, 62 24 Z" fill="url(#skinQueen_${uid})" opacity="0.55"/>
+        <!-- Center-Parted Rich Chestnut Hair Framing Forehead -->
+        <path d="M 36.5 30 C 37.5 19, 45.5 18.5, 50 23.5 C 54.5 18.5, 62.5 19, 63.5 30 C 59.5 24, 53 23.5, 50 26.2 C 47 23.5, 40.5 24, 36.5 30 Z" fill="url(#hairGrad_${uid})" stroke="#1c0a00" stroke-width="0.8"/>
+
+        <!-- Soft Cheek Blush & Subtle Chin Modeling -->
+        <circle cx="42.5" cy="39.5" r="3.4" fill="#e11d48" opacity="0.16"/>
+        <circle cx="57.5" cy="39.5" r="3.4" fill="#e11d48" opacity="0.16"/>
+        <path d="M 47.2 50.8 Q 50 52.2 52.8 50.8" stroke="#c2410c" stroke-width="0.7" fill="none" opacity="0.45" stroke-linecap="round"/>
+
+        <!-- Expressive Almond Eyes, Curved Lashes & Arched Brows -->
+        <g>
+          <!-- Left Eye -->
+          <path d="M 40.8 34.2 Q 44.2 32.0 47.6 34.2 Q 44.2 36.0 40.8 34.2 Z" fill="#ffffff" stroke="#1e1b18" stroke-width="0.6"/>
+          <circle cx="44.3" cy="34.1" r="1.5" fill="#1e3a8a"/>
+          <circle cx="44.3" cy="34.1" r="0.7" fill="#0f172a"/>
+          <circle cx="43.8" cy="33.6" r="0.42" fill="#ffffff"/>
+          <path d="M 40.3 33.8 Q 44.2 31.5 48.0 34.0" stroke="#1e1b18" stroke-width="1.05" fill="none" stroke-linecap="round"/>
+          <path d="M 40.2 31.0 Q 44.2 28.8 48.2 30.8" stroke="#3b1806" stroke-width="1.25" fill="none" stroke-linecap="round"/>
+
+          <!-- Right Eye -->
+          <path d="M 52.4 34.2 Q 55.8 32.0 59.2 34.2 Q 55.8 36.0 52.4 34.2 Z" fill="#ffffff" stroke="#1e1b18" stroke-width="0.6"/>
+          <circle cx="55.7" cy="34.1" r="1.5" fill="#1e3a8a"/>
+          <circle cx="55.7" cy="34.1" r="0.7" fill="#0f172a"/>
+          <circle cx="55.2" cy="33.6" r="0.42" fill="#ffffff"/>
+          <path d="M 52.0 34.0 Q 55.8 31.5 59.7 33.8" stroke="#1e1b18" stroke-width="1.05" fill="none" stroke-linecap="round"/>
+          <path d="M 51.8 30.8 Q 55.8 28.8 59.8 31.0" stroke="#3b1806" stroke-width="1.25" fill="none" stroke-linecap="round"/>
+        </g>
+
+        <!-- Sculpted Nose & Classic Rosebud Lips -->
+        <path d="M 49.5 31.5 L 49.0 40.2 Q 49.2 41.8 50.6 42.0" stroke="#9a3412" stroke-width="0.95" fill="none" stroke-linecap="round"/>
+        <path d="M 50.5 32.5 L 50.2 39.8" stroke="#ffffff" stroke-width="0.75" fill="none" stroke-linecap="round" opacity="0.8"/>
+        <path d="M 46.2 45.8 C 47.8 44.3, 49.2 44.8, 50 45.3 C 50.8 44.8, 52.2 44.3, 53.8 45.8 C 52.2 48.2, 47.8 48.2, 46.2 45.8 Z" fill="#be123c" stroke="#881337" stroke-width="0.55"/>
+        <path d="M 46.6 45.9 Q 50 46.7 53.4 45.9" stroke="#881337" stroke-width="0.6" fill="none"/>
+
+        <!-- Golden Floral Diadem Crown & Emerald Plume -->
+        <path d="M 35 21 C 30 11, 37 5.5, 41 6.5 C 41.5 11.5, 39.5 16.5, 38.5 20 Z" fill="#10b981" stroke="#065f46" stroke-width="0.75"/>
+        <path d="M 35 22.5 Q 50 17.5 65 22.5 L 63.5 18 Q 50 13.5 36.5 18 Z" fill="url(#goldGrad_${uid})" stroke="#78350f" stroke-width="0.85"/>
+        <polygon points="39.5,18 42,10.5 44.5,18" fill="url(#goldGrad_${uid})" stroke="#78350f" stroke-width="0.6"/>
+        <polygon points="47,16.5 50,8 53,16.5" fill="url(#goldGrad_${uid})" stroke="#78350f" stroke-width="0.6"/>
+        <polygon points="55.5,18 58,10.5 60.5,18" fill="url(#goldGrad_${uid})" stroke="#78350f" stroke-width="0.6"/>
+        <circle cx="42" cy="9.8" r="1.1" fill="#ffffff" stroke="#94a3b8" stroke-width="0.35"/>
+        <circle cx="50" cy="7.2" r="1.3" fill="#ffffff" stroke="#94a3b8" stroke-width="0.35"/>
+        <circle cx="58" cy="9.8" r="1.1" fill="#ffffff" stroke="#94a3b8" stroke-width="0.35"/>
+        <circle cx="50" cy="18.2" r="1.45" fill="#dc2626"/>
+        <circle cx="43" cy="19" r="1.2" fill="#0284c7"/>
+        <circle cx="57" cy="19" r="1.2" fill="#0284c7"/>
+
+        <!-- Viewer's Right: Graceful Forearm, Lace Cuff & Blooming Tudor Rose -->
+        <g>
+          <!-- Rose Stem & Leaves -->
+          <path d="M 72 104 C 75 88, 78 75, 79 63" stroke="#15803d" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <path d="M 76.5 78 C 70.5 76, 69.5 70.5, 74.5 70.5 C 77 72, 77.5 75.5, 76.5 78 Z" fill="#16a34a" stroke="#14532d" stroke-width="0.6"/>
+          <path d="M 78 72 C 84 70, 85 64.5, 80 64.5 C 78 66, 77.5 69.5, 78 72 Z" fill="#16a34a" stroke="#14532d" stroke-width="0.6"/>
+          <!-- Multi-Petaled Tudor Rose Blossom -->
+          <g transform="translate(79, 59)">
+            <circle cx="0" cy="-4.0" r="3.1" fill="#e11d48" stroke="#881337" stroke-width="0.6"/>
+            <circle cx="3.8" cy="-1.2" r="3.1" fill="#e11d48" stroke="#881337" stroke-width="0.6"/>
+            <circle cx="2.4" cy="3.2" r="3.1" fill="#e11d48" stroke="#881337" stroke-width="0.6"/>
+            <circle cx="-2.4" cy="3.2" r="3.1" fill="#e11d48" stroke="#881337" stroke-width="0.6"/>
+            <circle cx="-3.8" cy="-1.2" r="3.1" fill="#e11d48" stroke="#881337" stroke-width="0.6"/>
+            <circle cx="0" cy="0" r="3.3" fill="#fda4af" stroke="#be123c" stroke-width="0.55"/>
+            <circle cx="0" cy="0" r="1.7" fill="#fde047" stroke="#b45309" stroke-width="0.5"/>
+          </g>
+          <!-- Pleated White Lace Cuff & Sculpted Hand -->
+          <path d="M 70 94 L 82 98 L 80 104 L 68 100 Z" fill="#ffffff" stroke="#94a3b8" stroke-width="0.7"/>
+          <path d="M 70.5 87 C 70.5 83.5, 79.5 83.5, 81 87.5 C 81.8 91.5, 78.5 94.5, 73.5 93.8 C 70.5 93, 69.8 90, 70.5 87 Z" fill="url(#skinGrad_${uid})" stroke="#9a3412" stroke-width="0.75"/>
+          <path d="M 73 86.8 L 79.5 87.2 M 72.8 89.5 L 79.5 90.0" stroke="#9a3412" stroke-width="0.6" stroke-linecap="round"/>
+        </g>
+
+        <!-- Viewer's Left: Graceful Hand Presenting Large Suit Beverage -->
+        <g>
+          <!-- Lace Cuff & Sculpted Hand -->
+          <path d="M 17 96 L 30 92.5 L 31.5 98 L 18.5 101.5 Z" fill="#ffffff" stroke="#94a3b8" stroke-width="0.7"/>
+          <path d="M 18.5 88.5 C 20 85, 29.5 85, 31 88.5 C 31.8 92.5, 28.5 95, 23.5 94.5 C 19.5 94, 17.8 91.5, 18.5 88.5 Z" fill="url(#skinGrad_${uid})" stroke="#9a3412" stroke-width="0.75"/>
+          <path d="M 21 88.5 L 29 88.2 M 21 91.2 L 29 91.0" stroke="#9a3412" stroke-width="0.6" stroke-linecap="round"/>
+          <!-- Golden Coaster Under Vessel -->
+          <ellipse cx="25.5" cy="85.2" rx="9" ry="2.3" fill="url(#goldGrad_${uid})" stroke="#78350f" stroke-width="0.8"/>
+          <!-- Large Prominent Suit Drink -->
+          <g transform="translate(25.5, 72.8)">
+            ${emblem}
+          </g>
         </g>
       </g>
+
+      <!-- Ornate Curved Gold Portrait Base Trim -->
+      <path d="M 6 118 Q 6 135 22 135 L 68 135 Q 96 134 96 116" stroke="url(#goldGrad_${uid})" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <path d="M 9 124 Q 12 132 24 132 L 66 132 Q 86 132 92 121" stroke="#78350f" stroke-width="0.7" fill="none" opacity="0.6"/>
     </g>
   `;
 }
 
-function renderJackFigureSVG(suit) {
-  const gold = '#d97706';
-  const goldLight = '#fde047';
-  const goldDark = '#78350f';
-  const goldRim = '#fbbf24';
+function renderJackFigureSVG(suit, uid) {
   const emblem = getCourtEmblemSVG(suit.key || suit.name);
 
   return `
     <g>
-      <!-- Velvet Cloak Robe -->
-      <path d="M 22 55 C 16 75, 15 110, 18 138 L 82 138 C 85 110, 84 75, 78 55 Z" fill="#b91c1c" stroke="#111827" stroke-width="1"/>
-      <path d="M 20 80 C 23 100, 24 120, 26 138" stroke="#7f1d1d" stroke-width="1.2" fill="none"/>
-      <path d="M 80 80 C 77 100, 76 120, 74 138" stroke="#7f1d1d" stroke-width="1.2" fill="none"/>
+      <!-- Warm Portrait Halo Behind Bust -->
+      <ellipse cx="52" cy="70" rx="40" ry="54" fill="url(#auraGrad_${uid})"/>
 
-      <!-- Renaissance Breeches -->
-      <path d="M 33 88 L 67 88 L 71 138 L 29 138 Z" fill="${suit.doubletJ}" stroke="#111827" stroke-width="1"/>
-      <g fill="#991b1b" stroke="#7f1d1d" stroke-width="0.5">
-        <ellipse cx="38" cy="112" rx="2.5" ry="12"/>
-        <ellipse cx="46" cy="112" rx="2.5" ry="12"/>
-        <ellipse cx="54" cy="112" rx="2.5" ry="12"/>
-        <ellipse cx="62" cy="112" rx="2.5" ry="12"/>
-      </g>
+      <clipPath id="jackClip_${uid}">
+        <path d="M 4 0 L 96 0 L 96 116 Q 96 134 68 135 L 22 135 Q 6 135 6 118 Z"/>
+      </clipPath>
 
-      <!-- Golden Sable Fur Collar -->
-      <path d="M 26 38 Q 34 46 36 84 L 28 84 Z" fill="#d97706" stroke="${goldDark}" stroke-width="0.8"/>
-      <path d="M 74 38 Q 66 46 64 84 L 72 84 Z" fill="#d97706" stroke="${goldDark}" stroke-width="0.8"/>
-      <g stroke="${goldLight}" stroke-width="0.6">
-        <line x1="29" y1="46" x2="31" y2="49"/>
-        <line x1="28" y1="58" x2="30" y2="61"/>
-        <line x1="29" y1="70" x2="31" y2="73"/>
-        <line x1="71" y1="46" x2="69" y2="49"/>
-        <line x1="72" y1="58" x2="70" y2="61"/>
-        <line x1="71" y1="70" x2="69" y2="73"/>
-      </g>
+      <g clip-path="url(#jackClip_${uid})">
+        <!-- Cavalier Crimson Velvet Outer Cloak -->
+        <path d="M 10 136 C 8 102, 13 72, 27 62 L 73 62 C 87 72, 92 102, 90 136 Z" fill="url(#mantleGrad_${uid})" stroke="#1e1b18" stroke-width="1.15"/>
+        <path d="M 16 84 C 14 102, 15 118, 17 135" stroke="#450a0a" stroke-width="1.8" fill="none" opacity="0.7"/>
+        <path d="M 84 84 C 86 102, 85 118, 83 135" stroke="#450a0a" stroke-width="1.8" fill="none" opacity="0.7"/>
 
-      <!-- Doublet Chest with Bold Alternating Chevron Laces -->
-      <path d="M 36 38 L 64 38 L 66 84 L 34 84 Z" fill="${suit.doubletJ}" stroke="#111827" stroke-width="1"/>
-      <g stroke="#ffffff" stroke-width="1.8" stroke-linecap="round">
-        <line x1="43" y1="46" x2="50" y2="51"/>
-        <line x1="57" y1="46" x2="50" y2="51"/>
-        <line x1="43" y1="54" x2="50" y2="59"/>
-        <line x1="57" y1="54" x2="50" y2="59"/>
-        <line x1="43" y1="62" x2="50" y2="67"/>
-        <line x1="57" y1="62" x2="50" y2="67"/>
-        <line x1="43" y1="70" x2="50" y2="75"/>
-        <line x1="57" y1="70" x2="50" y2="75"/>
-        <line x1="43" y1="78" x2="50" y2="83"/>
-        <line x1="57" y1="78" x2="50" y2="83"/>
-      </g>
-      <g fill="${goldLight}" stroke="${goldDark}" stroke-width="0.5">
-        <circle cx="50" cy="51" r="1.1"/>
-        <circle cx="50" cy="59" r="1.1"/>
-        <circle cx="50" cy="67" r="1.1"/>
-        <circle cx="50" cy="75" r="1.1"/>
-        <circle cx="50" cy="83" r="1.1"/>
-      </g>
+        <!-- Puffed, Paned & Slashed Renaissance Sleeves -->
+        <path d="M 27 64 C 13 68, 9 86, 15 106 L 31 100 Z" fill="url(#doubletGrad_${uid})" stroke="#111827" stroke-width="1.0"/>
+        <path d="M 73 64 C 87 68, 91 86, 85 106 L 69 100 Z" fill="url(#doubletGrad_${uid})" stroke="#111827" stroke-width="1.0"/>
+        <!-- Crimson & Gold Slashed Panes on Sleeves -->
+        <ellipse cx="19" cy="82" rx="3.4" ry="8.5" fill="url(#mantleGrad_${uid})" stroke="url(#goldGrad_${uid})" stroke-width="0.85" transform="rotate(14 19 82)"/>
+        <ellipse cx="81" cy="82" rx="3.4" ry="8.5" fill="url(#mantleGrad_${uid})" stroke="url(#goldGrad_${uid})" stroke-width="0.85" transform="rotate(-14 81 82)"/>
 
-      <!-- Slashed sleeves -->
-      <path d="M 22 52 C 16 58, 17 72, 23 78 L 26 68 Z" fill="${suit.doubletJ}" stroke="#111827" stroke-width="0.8"/>
-      <path d="M 78 52 C 84 58, 83 72, 77 78 L 74 68 Z" fill="${suit.doubletJ}" stroke="#111827" stroke-width="0.8"/>
-      <g fill="#b91c1c" stroke="#7f1d1d" stroke-width="0.5">
-        <ellipse cx="20" cy="62" rx="1.8" ry="4.5"/>
-        <ellipse cx="80" cy="62" rx="1.8" ry="4.5"/>
-      </g>
+        <!-- Tailored Renaissance Doublet Chest with Chevron Braiding -->
+        <path d="M 29 60 L 71 60 L 73 136 L 27 136 Z" fill="url(#doubletGrad_${uid})" stroke="#111827" stroke-width="1.1"/>
+        <line x1="50" y1="60" x2="50" y2="135" stroke="url(#goldVert_${uid})" stroke-width="2.6"/>
 
-      <!-- Belt with pouch -->
-      <rect x="33" y="84" width="34" height="5.5" rx="1" fill="#78350f" stroke="#451a03" stroke-width="0.8"/>
-      <rect x="47" y="83" width="6" height="7.5" rx="1" fill="${goldLight}" stroke="${goldDark}" stroke-width="0.7"/>
+        <!-- Bold White & Gold Chevron Laces Down Chest (Like Berliner Bild Bube) -->
+        <g stroke="#ffffff" stroke-width="2.1" stroke-linecap="round">
+          <path d="M 39 70 L 50 78 L 61 70"/>
+          <path d="M 38 82 L 50 90 L 62 82"/>
+          <path d="M 38 94 L 50 102 L 62 94"/>
+          <path d="M 37 106 L 50 114 L 63 106"/>
+          <path d="M 37 118 L 50 126 L 63 118"/>
+        </g>
+        <g fill="#fde047" stroke="#78350f" stroke-width="0.6">
+          <circle cx="50" cy="78" r="1.7"/>
+          <circle cx="50" cy="90" r="1.7"/>
+          <circle cx="50" cy="102" r="1.7"/>
+          <circle cx="50" cy="114" r="1.7"/>
+          <circle cx="50" cy="126" r="1.7"/>
+        </g>
 
-      <!-- Wavy Chestnut Hair -->
-      <g fill="#451a03" stroke="#1c0b02" stroke-width="0.8">
-        <path d="M 39 24 C 34 28, 33 38, 37 45 C 40 43, 41 36, 41 28 Z"/>
-        <path d="M 61 24 C 66 28, 67 38, 63 45 C 60 43, 59 36, 59 28 Z"/>
-      </g>
+        <!-- Diagonal Golden Baldric (Schulterwehrgehänge) Across Chest -->
+        <path d="M 33 61 L 41 61 L 68 122 L 60 122 Z" fill="url(#goldGrad_${uid})" stroke="#451a03" stroke-width="0.9"/>
+        <rect x="47" y="86" width="8" height="8" rx="1.3" fill="#fef08a" stroke="#78350f" stroke-width="0.8" transform="rotate(30 51 90)"/>
 
-      <!-- Head, Face & Chiseled Jaw -->
-      <path d="M 43 21 C 43 31, 45 36, 50 37.5 C 55 36, 57 31, 57 21 Z" fill="#fed7aa" stroke="#c2410c" stroke-width="0.6"/>
+        <!-- Broad, Plush Golden-Brown Sable Fur Collar (Pelzschaube) -->
+        <path d="M 20 62 C 25 59, 34 63, 37 135 L 23 135 C 20 108, 19 80, 20 62 Z" fill="#b45309" stroke="#451a03" stroke-width="1.05"/>
+        <path d="M 80 62 C 75 59, 66 63, 63 135 L 77 135 C 80 108, 81 80, 80 62 Z" fill="#b45309" stroke="#451a03" stroke-width="1.05"/>
+        <g stroke="#fde68a" stroke-width="0.85" stroke-linecap="round" opacity="0.8">
+          <line x1="25" y1="72" x2="29" y2="77"/>
+          <line x1="24" y1="86" x2="28" y2="91"/>
+          <line x1="25" y1="100" x2="29" y2="105"/>
+          <line x1="24" y1="114" x2="28" y2="119"/>
+          <line x1="75" y1="72" x2="71" y2="77"/>
+          <line x1="76" y1="86" x2="72" y2="91"/>
+          <line x1="75" y1="100" x2="71" y2="105"/>
+          <line x1="76" y1="114" x2="72" y2="119"/>
+        </g>
 
-      <!-- Pointed Collar -->
-      <polygon points="43,36 49,42 46,36" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
-      <polygon points="57,36 51,42 54,36" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.7"/>
+        <!-- Crisp White Pointed Van Dyck Lace Collar -->
+        <polygon points="34,54 49,66 42,53" fill="#ffffff" stroke="#94a3b8" stroke-width="0.9"/>
+        <polygon points="66,54 51,66 58,53" fill="#ffffff" stroke="#94a3b8" stroke-width="0.9"/>
 
-      <!-- Features -->
-      <path d="M 44 24 Q 46.5 22.8 49 24 Q 46.5 25.2 44 24 Z" fill="#ffffff" stroke="#111827" stroke-width="0.5"/>
-      <circle cx="46.8" cy="24" r="1.2" fill="#0284c7"/>
-      <circle cx="46.8" cy="24" r="0.6" fill="#0f172a"/>
-      <circle cx="46.5" cy="23.7" r="0.35" fill="#ffffff"/>
-      <path d="M 43.8 23.5 Q 46.5 22.2 49.2 23.5" stroke="#111827" stroke-width="0.9" fill="none" stroke-linecap="round"/>
+        <!-- Wavy Auburn-Chestnut Hair Locks -->
+        <g fill="url(#hairGrad_${uid})" stroke="#1c0a00" stroke-width="0.9">
+          <path d="M 35 28 C 27 33, 26 46, 32 57 C 36 55, 38 46, 38 34 Z"/>
+          <path d="M 65 28 C 73 33, 74 46, 68 57 C 64 55, 62 46, 62 34 Z"/>
+        </g>
+        <path d="M 31 36 C 29 42, 30 49, 33 54 M 69 36 C 71 42, 70 49, 67 54" stroke="#b45309" stroke-width="0.8" fill="none" opacity="0.75"/>
 
-      <path d="M 52.5 24 Q 55 22.8 57.5 24 Q 55 25.2 52.5 24 Z" fill="#ffffff" stroke="#111827" stroke-width="0.5"/>
-      <circle cx="54.8" cy="24" r="1.2" fill="#0284c7"/>
-      <circle cx="54.8" cy="24" r="0.6" fill="#0f172a"/>
-      <circle cx="54.5" cy="23.7" r="0.35" fill="#ffffff"/>
-      <path d="M 52.2 23.5 Q 55 22.2 57.8 23.5" stroke="#111827" stroke-width="0.9" fill="none" stroke-linecap="round"/>
+        <!-- Handsome Young Nobleman Head & Chiseled Jaw (3/4 Turn) -->
+        <path d="M 37 24 C 37 40, 40.5 51, 50 55 C 59.5 51, 63 40, 63 24 Z" fill="url(#skinGrad_${uid})" stroke="#9a3412" stroke-width="0.85"/>
+        <path d="M 39.5 36 C 39.5 43, 42 48, 45.5 51" stroke="#ea580c" stroke-width="1.4" fill="none" opacity="0.22" stroke-linecap="round"/>
+        <path d="M 60.5 36 C 60.5 43, 58 48, 54.5 51" stroke="#ea580c" stroke-width="1.4" fill="none" opacity="0.22" stroke-linecap="round"/>
+        <circle cx="42.5" cy="39.5" r="3.2" fill="#ea580c" opacity="0.15"/>
+        <circle cx="57.5" cy="39.5" r="3.2" fill="#ea580c" opacity="0.15"/>
 
-      <path d="M 43.5 21.8 L 48.5 21.2" stroke="#261005" stroke-width="1.1" stroke-linecap="round"/>
-      <path d="M 52.5 21.2 L 57.5 21.8" stroke="#261005" stroke-width="1.1" stroke-linecap="round"/>
+        <!-- Confident Almond Eyes & Brows -->
+        <g>
+          <path d="M 40.5 34.0 Q 44.2 31.8 47.6 34.0 Q 44.2 35.8 40.5 34.0 Z" fill="#ffffff" stroke="#1e1b18" stroke-width="0.6"/>
+          <circle cx="44.3" cy="33.9" r="1.5" fill="#1d4ed8"/>
+          <circle cx="44.3" cy="33.9" r="0.7" fill="#0f172a"/>
+          <circle cx="43.8" cy="33.4" r="0.42" fill="#ffffff"/>
+          <path d="M 40.1 33.6 Q 44.2 31.3 48.0 33.8" stroke="#1e1b18" stroke-width="1.05" fill="none" stroke-linecap="round"/>
+          <path d="M 39.8 30.8 L 48.0 30.0" stroke="#3b1806" stroke-width="1.4" stroke-linecap="round"/>
 
-      <path d="M 49.8 21.5 L 49.8 27.5 L 48.5 28.8" stroke="#7c2d12" stroke-width="0.9" fill="none" stroke-linecap="round"/>
+          <path d="M 52.4 34.0 Q 55.8 31.8 59.5 34.0 Q 55.8 35.8 52.4 34.0 Z" fill="#ffffff" stroke="#1e1b18" stroke-width="0.6"/>
+          <circle cx="55.7" cy="33.9" r="1.5" fill="#1d4ed8"/>
+          <circle cx="55.7" cy="33.9" r="0.7" fill="#0f172a"/>
+          <circle cx="55.2" cy="33.4" r="0.42" fill="#ffffff"/>
+          <path d="M 52.0 33.8 Q 55.8 31.3 59.9 33.6" stroke="#1e1b18" stroke-width="1.05" fill="none" stroke-linecap="round"/>
+          <path d="M 52.0 30.0 L 60.2 30.8" stroke="#3b1806" stroke-width="1.4" stroke-linecap="round"/>
+        </g>
 
-      <path d="M 45.5 30.8 Q 49.5 32.5 53.5 30.8" stroke="#be123c" stroke-width="1.1" fill="none" stroke-linecap="round"/>
-      <path d="M 46 30.2 Q 49.5 31.5 53 30.2" stroke="#451a03" stroke-width="0.7" fill="none"/>
-      <path d="M 49 33.5 Q 50 35.5 51 33.5 Z" fill="#451a03"/>
+        <!-- Sculpted Nose, Dashing Cavalier Mustache & Pointed Goatee -->
+        <path d="M 49.5 31.0 L 49.0 40.2 Q 49.2 41.8 50.6 42.0" stroke="#9a3412" stroke-width="1.0" fill="none" stroke-linecap="round"/>
+        <path d="M 50.5 32.0 L 50.2 39.8" stroke="#ffedd5" stroke-width="0.75" fill="none" stroke-linecap="round" opacity="0.8"/>
+        <path d="M 45.8 46.2 Q 50 48.0 54.2 46.2" stroke="#be123c" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+        <!-- Upturned Cavalier Mustache -->
+        <path d="M 41 44.5 C 44.5 46.8, 47.8 43.2, 50 44.5 C 52.2 43.2, 55.5 46.8, 59 44.5 C 56.8 47.6, 52.8 47.2, 50 45.8 C 47.2 47.2, 43.2 47.6, 41 44.5 Z" fill="url(#hairGrad_${uid})" stroke="#1c0a00" stroke-width="0.65"/>
+        <!-- Pointed Goatee (Spitzbart) -->
+        <path d="M 47.5 49.2 L 50 55.2 L 52.5 49.2 Z" fill="url(#hairGrad_${uid})" stroke="#1c0a00" stroke-width="0.6"/>
 
-      <!-- Jaunty Beret with Ostrich Feather Plume -->
-      <ellipse cx="50" cy="15" rx="20" ry="6" fill="${suit.beretJ}" stroke="#111827" stroke-width="0.9" transform="rotate(-8 50 15)"/>
-      <path d="M 32 17 Q 50 20 68 15" stroke="${goldRim}" stroke-width="1.8" fill="none"/>
-      <path d="M 33 17 C 24 10, 34 6, 48 7 C 58 8, 71 11, 71 14 C 64 12, 54 10, 44 10 C 35 10, 31 13, 33 17 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8"/>
-      <circle cx="33" cy="17" r="2" fill="${goldLight}" stroke="${goldDark}" stroke-width="0.6"/>
-      <circle cx="33" cy="17" r="1" fill="#dc2626"/>
-      <g stroke="#e2e8f0" stroke-width="0.7" stroke-linecap="round">
-        <line x1="39" y1="9" x2="44" y2="8"/>
-        <line x1="48" y1="8.5" x2="53" y2="8"/>
-        <line x1="57" y1="9.5" x2="62" y2="9"/>
-      </g>
+        <!-- Jaunty Velvet Renaissance Beret & Sweeping White Ostrich Feather Plume -->
+        <g>
+          <ellipse cx="51" cy="18.5" rx="24.5" ry="7.8" fill="${suit.beretJ}" stroke="#111827" stroke-width="1.05" transform="rotate(-7 51 18.5)"/>
+          <path d="M 30.5 21.5 Q 51 25 71 19" stroke="url(#goldGrad_${uid})" stroke-width="2.4" fill="none"/>
+          <!-- Lush Sweeping Ostrich Plume -->
+          <path d="M 32 21 C 21 12, 33 4.5, 50 5.5 C 64 6.5, 76 11.5, 76 16 C 67 13, 55 10.5, 43 11 C 34 11.5, 30 15.5, 32 21 Z" fill="#ffffff" stroke="#94a3b8" stroke-width="0.95"/>
+          <path d="M 36 12.5 Q 50 8.5 67 12.5" stroke="#cbd5e1" stroke-width="0.8" fill="none"/>
+          <g stroke="#e2e8f0" stroke-width="0.75" stroke-linecap="round">
+            <line x1="41" y1="9" x2="46" y2="7.5"/>
+            <line x1="51" y1="8.5" x2="56" y2="7.8"/>
+            <line x1="60" y1="10" x2="65" y2="9.2"/>
+          </g>
+          <!-- Jeweled Feather Brooch Clasp -->
+          <circle cx="32.5" cy="20.5" r="2.8" fill="url(#goldGrad_${uid})" stroke="#451a03" stroke-width="0.7"/>
+          <circle cx="32.5" cy="20.5" r="1.35" fill="#dc2626"/>
+        </g>
 
-      <!-- Viewer's Right: Gripping the Tall Steel Halberd -->
-      <g>
-        <line x1="75" y1="10" x2="75" y2="135" stroke="#334155" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="74.5" y1="10" x2="74.5" y2="135" stroke="#94a3b8" stroke-width="0.8" stroke-linecap="round"/>
-        <polygon points="75,5 77.5,13 72.5,13" fill="#38bdf8" stroke="#0369a1" stroke-width="0.7"/>
-        <path d="M 75,12 Q 83,14 81.5,23 L 75,20.5 Z" fill="#38bdf8" stroke="#0284c7" stroke-width="0.8"/>
-        <path d="M 76.5,14 Q 80.5,15.5 79.5,21" stroke="#ffffff" stroke-width="0.6" fill="none"/>
-        <path d="M 75,14 L 70,15.5 L 75,18 Z" fill="#94a3b8" stroke="#334155" stroke-width="0.6"/>
-        <ellipse cx="75" cy="62" rx="3.8" ry="3.4" fill="#fed7aa" stroke="#c2410c" stroke-width="0.7"/>
-        <path d="M 73 59 C 75 59, 77 59, 78 60 M 73 62 C 75 62, 77 62, 78 63 M 73 65 C 75 65, 77 65, 78 66" stroke="#9a3412" stroke-width="0.6"/>
-        <rect x="71.5" y="65" width="7" height="3" rx="1" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
-      </g>
+        <!-- Viewer's Right: Gleaming Steel Halberd (Hellebarde) & Gloved/Cuffed Hand -->
+        <g>
+          <!-- Ash Wood Pole Shaft -->
+          <line x1="78" y1="10" x2="74" y2="136" stroke="#451a03" stroke-width="3.4" stroke-linecap="round"/>
+          <line x1="77.5" y1="10" x2="73.5" y2="136" stroke="#9a3412" stroke-width="1.2" stroke-linecap="round"/>
+          <!-- Gleaming Steel Halberd Blade, Spear Point & Fluke -->
+          <polygon points="78,2 81,14 75,14" fill="url(#steelGrad_${uid})" stroke="#1e293b" stroke-width="0.85"/>
+          <path d="M 78,13 C 89,15 90,29 81.5,33 C 84,26 82.8,20.5 78,23.5 Z" fill="url(#steelGrad_${uid})" stroke="#1e293b" stroke-width="0.9"/>
+          <path d="M 80,16.5 C 86,18 86.5,26.5 82,29.5" stroke="#ffffff" stroke-width="0.75" fill="none"/>
+          <path d="M 78,15 L 70,18 L 78,21.5 Z" fill="url(#steelGrad_${uid})" stroke="#1e293b" stroke-width="0.85"/>
+          <!-- Crimson & Gold Tassel Below Blade -->
+          <path d="M 75 26.5 L 80.5 26.5 L 81.5 32 L 74 32 Z" fill="url(#goldGrad_${uid})" stroke="#78350f" stroke-width="0.6"/>
 
-      <!-- Viewer's Left: Hand Resting on Sword Hilt & Proudly Presenting Suit Vessel -->
-      <g>
-        <path d="M 22 65 Q 26 63 28 68 Q 28 75 24 77 Q 20 75 20 68 Z" fill="none" stroke="${goldRim}" stroke-width="1.4"/>
-        <circle cx="23" cy="63" r="2.2" fill="${goldLight}" stroke="${goldDark}" stroke-width="0.6"/>
-        <ellipse cx="25" cy="65" rx="3.8" ry="3.2" fill="#fed7aa" stroke="#c2410c" stroke-width="0.7"/>
-        <path d="M 23 64 Q 26 66 28 64 M 23 66 Q 26 68 28 66" stroke="#9a3412" stroke-width="0.5"/>
-        <rect x="22.5" y="67" width="7" height="3" rx="1" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.6"/>
-        <g transform="translate(25, 52)">
-          ${emblem}
+          <!-- Lace Cuff & Sculpted Hand Gripping Shaft -->
+          <path d="M 71 95 L 83 98.5 L 81 105 L 69 101 Z" fill="#ffffff" stroke="#94a3b8" stroke-width="0.7"/>
+          <path d="M 71.5 85 C 71 82.5, 74 80.5, 77.5 81.5 L 82 83.5 C 84 85, 83.5 92, 80.5 93.5 L 73.5 92.5 C 71 91, 71 87.5, 71.5 85 Z" fill="url(#skinGrad_${uid})" stroke="#9a3412" stroke-width="0.8"/>
+          <path d="M 74 84.2 L 81 85.2 M 73.8 87.2 L 81 88.2 M 73.6 90.0 L 80 90.8" stroke="#9a3412" stroke-width="0.65" stroke-linecap="round"/>
+        </g>
+
+        <!-- Viewer's Left: Ornate Sword Hilt & Hand Presenting Large Suit Beverage -->
+        <g>
+          <!-- Golden Rapier Sword Hilt Below Hand -->
+          <path d="M 18 110 Q 24 106 29 114 Q 29 123 23 125 Q 17 122 18 110 Z" fill="none" stroke="url(#goldGrad_${uid})" stroke-width="1.8"/>
+          <circle cx="20.5" cy="107.5" r="2.6" fill="url(#goldGrad_${uid})" stroke="#451a03" stroke-width="0.7"/>
+
+          <!-- Lace Cuff & Sculpted Hand Holding Suit Drink -->
+          <path d="M 17 95.5 L 30 92 L 31.5 97.5 L 18.5 101 Z" fill="#ffffff" stroke="#94a3b8" stroke-width="0.7"/>
+          <path d="M 18.5 88 C 20 84.5, 29.5 84.5, 31 88 C 31.8 92, 28.5 94.5, 23.5 94 C 19.5 93.5, 17.8 91, 18.5 88 Z" fill="url(#skinGrad_${uid})" stroke="#9a3412" stroke-width="0.8"/>
+          <path d="M 21 88 L 29 87.8 M 21 90.8 L 29 90.5" stroke="#9a3412" stroke-width="0.65" stroke-linecap="round"/>
+          <!-- Golden Coaster Under Vessel -->
+          <ellipse cx="25.5" cy="84.8" rx="9" ry="2.3" fill="url(#goldGrad_${uid})" stroke="#78350f" stroke-width="0.8"/>
+          <!-- Large Prominent Suit Drink -->
+          <g transform="translate(25.5, 72.2)">
+            ${emblem}
+          </g>
         </g>
       </g>
+
+      <!-- Ornate Curved Gold Portrait Base Trim -->
+      <path d="M 6 118 Q 6 135 22 135 L 68 135 Q 96 134 96 116" stroke="url(#goldGrad_${uid})" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <path d="M 9 124 Q 12 132 24 132 L 66 132 Q 86 132 92 121" stroke="#78350f" stroke-width="0.7" fill="none" opacity="0.6"/>
     </g>
   `;
 }
 
 function getCourtCardSVG(rankValue, suitKey) {
   const suit = COURT_SUIT_THEMES[suitKey] || COURT_SUIT_THEMES.clubs;
+  const uid = Math.random().toString(36).substr(2, 6);
+
   let figureContent = '';
   if (rankValue === 13) {
-    figureContent = renderKingFigureSVG(suit);
+    figureContent = renderKingFigureSVG(suit, uid);
   } else if (rankValue === 12) {
-    figureContent = renderQueenFigureSVG(suit);
+    figureContent = renderQueenFigureSVG(suit, uid);
   } else {
-    figureContent = renderJackFigureSVG(suit);
+    figureContent = renderJackFigureSVG(suit, uid);
   }
 
   return `
     <svg class="court-svg" viewBox="0 0 100 144" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="auraGrad_${uid}" cx="50%" cy="48%" r="52%">
+          <stop offset="0%" stop-color="#fef3c7" stop-opacity="0.55"/>
+          <stop offset="65%" stop-color="#fde68a" stop-opacity="0.22"/>
+          <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="goldGrad_${uid}" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#fef08a"/>
+          <stop offset="30%" stop-color="#f59e0b"/>
+          <stop offset="65%" stop-color="#b45309"/>
+          <stop offset="85%" stop-color="#fde047"/>
+          <stop offset="100%" stop-color="#78350f"/>
+        </linearGradient>
+        <linearGradient id="goldVert_${uid}" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#b45309"/>
+          <stop offset="50%" stop-color="#fef08a"/>
+          <stop offset="100%" stop-color="#92400e"/>
+        </linearGradient>
+        <linearGradient id="skinGrad_${uid}" x1="30%" y1="15%" x2="80%" y2="90%">
+          <stop offset="0%" stop-color="#ffedd5"/>
+          <stop offset="60%" stop-color="#fed7aa"/>
+          <stop offset="100%" stop-color="#fdba74"/>
+        </linearGradient>
+        <linearGradient id="skinQueen_${uid}" x1="30%" y1="15%" x2="80%" y2="90%">
+          <stop offset="0%" stop-color="#fff1f2"/>
+          <stop offset="65%" stop-color="#ffe4e6"/>
+          <stop offset="100%" stop-color="#fecdd3"/>
+        </linearGradient>
+        <linearGradient id="hairGrad_${uid}" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#78350f"/>
+          <stop offset="50%" stop-color="#451a03"/>
+          <stop offset="100%" stop-color="#1c0a00"/>
+        </linearGradient>
+        <linearGradient id="ermineGrad_${uid}" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#e2e8f0"/>
+          <stop offset="50%" stop-color="#ffffff"/>
+          <stop offset="100%" stop-color="#cbd5e1"/>
+        </linearGradient>
+        <linearGradient id="steelGrad_${uid}" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#f8fafc"/>
+          <stop offset="45%" stop-color="#94a3b8"/>
+          <stop offset="75%" stop-color="#475569"/>
+          <stop offset="100%" stop-color="#e2e8f0"/>
+        </linearGradient>
+        <linearGradient id="mantleGrad_${uid}" x1="0%" y1="0%" x2="100%" y2="20%">
+          <stop offset="0%" stop-color="${suit.mantleKDark}"/>
+          <stop offset="25%" stop-color="${suit.mantleK}"/>
+          <stop offset="75%" stop-color="${suit.mantleK}"/>
+          <stop offset="100%" stop-color="${suit.mantleKDark}"/>
+        </linearGradient>
+        <linearGradient id="tunicGrad_${uid}" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="${suit.tunicKDark}"/>
+          <stop offset="30%" stop-color="${suit.tunicK}"/>
+          <stop offset="70%" stop-color="${suit.tunicK}"/>
+          <stop offset="100%" stop-color="${suit.tunicKDark}"/>
+        </linearGradient>
+        <linearGradient id="bodiceGrad_${uid}" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="${suit.bodiceQDark}"/>
+          <stop offset="30%" stop-color="${suit.bodiceQ}"/>
+          <stop offset="70%" stop-color="${suit.bodiceQ}"/>
+          <stop offset="100%" stop-color="${suit.bodiceQDark}"/>
+        </linearGradient>
+        <linearGradient id="doubletGrad_${uid}" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="${suit.doubletJDark}"/>
+          <stop offset="30%" stop-color="${suit.doubletJ}"/>
+          <stop offset="70%" stop-color="${suit.doubletJ}"/>
+          <stop offset="100%" stop-color="${suit.doubletJDark}"/>
+        </linearGradient>
+      </defs>
       ${figureContent}
     </svg>
   `;
