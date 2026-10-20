@@ -13,7 +13,7 @@
       <div class="title-group">
         <h1 id="title-main">Solitär</h1>
         <span id="badge-edition" class="badge" title="Spezielle Schnaps-Edition">🥃 Schnaps Edition</span>
-        <span id="deal-badge" class="badge badge-gold" title="Dieses Spiel ist mathematisch garantiert zu 100% lösbar!">✨ Lösbar</span>
+        <span id="deal-badge" class="badge" title="Klassische, unmodifizierte Kartenzufallsmischung">🎲 Zufällig</span>
       </div>
 
       <!-- Stats display -->
@@ -129,14 +129,17 @@
         <div><strong id="win-label-score">Endstand:</strong> <span id="win-score">0</span></div>
       </div>
 
-      <!-- Player Name Input for Leaderboard -->
-      <div class="name-entry-box">
+      <!-- Player Name Input for Leaderboard (Random Mode only) -->
+      <div class="name-entry-box" id="win-name-box">
         <label for="win-name-input" id="win-label-name" class="name-label">Gib deinen Namen für die Bestenliste ein:</label>
         <div class="name-input-row">
           <input type="text" id="win-name-input" class="name-input" maxlength="25" placeholder="Spielername" autocomplete="name">
           <button id="btn-save-score" class="btn btn-gold">Speichern</button>
         </div>
         <div id="win-save-msg" class="save-msg hidden">✅ Rekord in die Bestenliste eingetragen!</div>
+      </div>
+      <div id="win-solvable-note" class="win-solvable-notice hidden">
+        ℹ️ Im lösbaren Spielstil werden keine Einträge für die Bestenliste gewertet. Wähle den klassischen Zufallsmodus für offizielle Rekorde!
       </div>
 
       <div class="modal-actions">
@@ -208,8 +211,8 @@
           <div class="setting-item">
             <label class="setting-item-label" for="select-deal-type" id="label-setting-deal">Spielstil:</label>
             <select id="select-deal-type" class="select-input modal-select" title="Garantiert lösbare oder zufällige Spiele wählen">
-              <option value="solvable" selected id="opt-deal-solvable">🌟 Lösbar (Präpariert)</option>
-              <option value="random" id="opt-deal-random">🎲 Zufällig (Klassisch)</option>
+              <option value="random" selected id="opt-deal-random">🎲 Zufällig (Klassisch)</option>
+              <option value="solvable" id="opt-deal-solvable">🌟 Lösbar (Präpariert)</option>
             </select>
           </div>
 

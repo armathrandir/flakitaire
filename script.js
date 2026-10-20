@@ -184,6 +184,7 @@ const TRANSLATIONS = {
       saveSuccessLocal: '✅ Rekord lokal gespeichert!',
       btnScores: 'Bestenliste',
       btnReplay: 'Nochmal spielen',
+      solvableNotice: 'ℹ️ Im lösbaren Spielstil werden keine Einträge für die Bestenliste gewertet. Wähle den klassischen Zufallsmodus für offizielle Rekorde!',
       dealSolvable: 'Lösbar',
       dealRandom: 'Zufällig',
       modeDraw1: '1 Karte',
@@ -342,6 +343,7 @@ const TRANSLATIONS = {
       saveSuccessLocal: '✅ Score saved locally!',
       btnScores: 'Leaderboard',
       btnReplay: 'Play Again',
+      solvableNotice: 'ℹ️ Solvable mode games are not eligible for the leaderboard. Play in standard Random mode for official high scores!',
       dealSolvable: 'Solvable',
       dealRandom: 'Random',
       modeDraw1: 'Draw 1',
@@ -500,6 +502,7 @@ const TRANSLATIONS = {
       saveSuccessLocal: '✅ ¡Puntuación guardada localmente!',
       btnScores: 'Clasificación',
       btnReplay: 'Jugar de nuevo',
+      solvableNotice: 'ℹ️ Las partidas en modo solucionable no se registran en la clasificación. ¡Juega en modo aleatorio para récords oficiales!',
       dealSolvable: 'Con solución',
       dealRandom: 'Aleatorio',
       modeDraw1: '1 Carta',
@@ -658,6 +661,7 @@ const TRANSLATIONS = {
       saveSuccessLocal: '✅ Результат сохранён локально!',
       btnScores: 'Рекорды',
       btnReplay: 'Сыграть ещё',
+      solvableNotice: 'ℹ️ Игры в решаемом режиме не учитываются в таблице рекордов. Выберите случайный режим для официальных рекордов!',
       dealSolvable: 'Решаемый',
       dealRandom: 'Случайный',
       modeDraw1: 'По 1 карте',
@@ -816,6 +820,7 @@ const TRANSLATIONS = {
       saveSuccessLocal: '✅ Sparat lokalt!',
       btnScores: 'Topplista',
       btnReplay: 'Spela igen',
+      solvableNotice: 'ℹ️ Spel i lösbart läge kvalificerar inte till topplistan. Spela i klassiskt slumpat läge för officiella rekord!',
       dealSolvable: 'Lösbar',
       dealRandom: 'Slumpad',
       modeDraw1: '1 kort',
@@ -974,6 +979,7 @@ const TRANSLATIONS = {
       saveSuccessLocal: '✅ Salvato localmente!',
       btnScores: 'Classifica',
       btnReplay: 'Gioca ancora',
+      solvableNotice: 'ℹ️ Le partite in modalità risolvibile non sono valide per la classifica. Gioca in modalità casuale per i record ufficiali!',
       dealSolvable: 'Risolvibile',
       dealRandom: 'Casuale',
       modeDraw1: '1 Carta',
@@ -2131,7 +2137,7 @@ class IrishFolkMusicPlayer {
     }
     this.audio.loop = false; // Must be false so 'ended' event fires to advance playlist
     this.audio.preload = 'auto';
-    this.baseVolume = 0.16; // Subtle tavern background level so card sounds stay clearly audible
+    this.baseVolume = 0.20; // Raised by ~25% so 80% slider provides desired tavern presence
     const storedVol = localStorage.getItem(STORAGE_KEYS.MUSIC_VOLUME);
     this.volumePercent = storedVol !== null ? parseInt(storedVol, 10) : 80;
     this.audio.volume = this.effectiveVolume;
@@ -2236,7 +2242,7 @@ class IrishFolkMusicPlayer {
     this.audio.pause();
   }
 
-  duck(targetGain = 0.02, durationSec = 3.2) {
+  duck(targetGain = 0.025, durationSec = 3.2) {
     if (!this.audio) return;
     clearTimeout(this.duckTimeout);
     const duckedLevel = Math.max(0.005, targetGain * (this.volumePercent / 80));
@@ -2874,7 +2880,7 @@ class SolitaireGame {
     const urlTheme = new URLSearchParams(window.location.search).get('theme');
     const storedFelt = localStorage.getItem(STORAGE_KEYS.FELT_THEME);
     this.feltTheme = urlTheme || (storedFelt && storedFelt !== 'emerald' ? storedFelt : 'oak');
-    this.dealType = localStorage.getItem(STORAGE_KEYS.DEAL_TYPE) || 'solvable';
+    this.dealType = localStorage.getItem(STORAGE_KEYS.DEAL_TYPE) || 'random';
     const urlLang = new URLSearchParams(window.location.search).get('lang');
     this.lang = urlLang || localStorage.getItem(STORAGE_KEYS.LANGUAGE) || 'de';
 
@@ -2979,6 +2985,8 @@ class SolitaireGame {
       winMoves: document.getElementById('win-moves'),
       winScore: document.getElementById('win-score'),
       winNameInput: document.getElementById('win-name-input'),
+      winNameBox: document.getElementById('win-name-box'),
+      winSolvableNote: document.getElementById('win-solvable-note'),
       btnSaveScore: document.getElementById('btn-save-score'),
       winSaveMsg: document.getElementById('win-save-msg'),
       scoresModal: document.getElementById('scores-modal'),
@@ -3179,6 +3187,9 @@ class SolitaireGame {
     setTxt('win-save-msg', t.winModal.saveSuccess);
     setTxt('btn-win-scores', t.winModal.btnScores);
     setTxt('btn-win-replay', t.winModal.btnReplay);
+    if (t.winModal.solvableNotice) {
+      setTxt('win-solvable-note', t.winModal.solvableNotice);
+    }
 
     setTxt('scores-modal-badge', t.scoresModal.badge);
     setTxt('scores-modal-title', t.scoresModal.title);
@@ -4472,12 +4483,20 @@ class SolitaireGame {
       };
 
       this.dom.winModal.classList.remove('hidden');
-      setTimeout(() => this.dom.winNameInput.focus(), 300);
+
+      if (this.dealType === 'solvable') {
+        if (this.dom.winNameBox) this.dom.winNameBox.classList.add('hidden');
+        if (this.dom.winSolvableNote) this.dom.winSolvableNote.classList.remove('hidden');
+      } else {
+        if (this.dom.winNameBox) this.dom.winNameBox.classList.remove('hidden');
+        if (this.dom.winSolvableNote) this.dom.winSolvableNote.classList.add('hidden');
+        setTimeout(() => this.dom.winNameInput && this.dom.winNameInput.focus(), 300);
+      }
     }
   }
 
   async commitPlayerScore() {
-    if (!this.pendingWinRecord || this.hasSavedCurrentWin) return;
+    if (!this.pendingWinRecord || this.hasSavedCurrentWin || this.pendingWinRecord.dealType === 'solvable') return;
 
     let playerName = this.dom.winNameInput.value.trim();
     if (!playerName) {
@@ -4526,13 +4545,15 @@ class SolitaireGame {
     const key = this.getStorageKeyForMode(mode);
     try {
       const data = localStorage.getItem(key);
-      return data ? JSON.parse(data) : [];
+      const list = data ? JSON.parse(data) : [];
+      return list.filter(s => s.dealType !== 'solvable');
     } catch {
       return [];
     }
   }
 
   recordLocalHighScore(record) {
+    if (record.dealType === 'solvable') return;
     const key = this.getStorageKeyForMode(record.mode);
     let scores = this.getLocalHighScoresForMode(record.mode);
     scores.push(record);
@@ -4544,6 +4565,7 @@ class SolitaireGame {
   }
 
   async submitGlobalScore(record, mode) {
+    if (record.dealType === 'solvable') return false;
     const modeKey = (mode === 'Draw 3' || mode === 'draw3' || mode === 3 || (typeof mode === 'string' && mode.includes('3')))
       ? 'draw3'
       : 'draw1';
@@ -4567,7 +4589,9 @@ class SolitaireGame {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
       if (!data) return [];
-      const list = Object.keys(data).map(k => ({ id: k, ...data[k] }));
+      const list = Object.keys(data)
+        .map(k => ({ id: k, ...data[k] }))
+        .filter(s => s.dealType !== 'solvable');
       list.sort((a, b) => b.score - a.score || a.timeSeconds - b.timeSeconds || a.moves - b.moves);
       return list.slice(0, 100);
     } catch (err) {
@@ -4638,7 +4662,8 @@ class SolitaireGame {
 
   renderHighScoresTable() {
     const t = TRANSLATIONS[this.lang] || TRANSLATIONS.de;
-    let scores = this.globalScoresCache[this.currentScoreTab] || this.getLocalHighScoresForMode(this.currentScoreTab) || [];
+    let rawScores = this.globalScoresCache[this.currentScoreTab] || this.getLocalHighScoresForMode(this.currentScoreTab) || [];
+    let scores = rawScores.filter(s => s.dealType !== 'solvable');
 
     // Apply device filter
     let filtered = scores;
