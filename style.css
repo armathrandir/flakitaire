@@ -1015,6 +1015,45 @@ body.is-pointer-dragging * {
   max-width: 220px;
 }
 
+.btn-track-skip {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #fff;
+  border-radius: 6px;
+  padding: 3px 7px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.btn-track-skip:hover {
+  background: rgba(212, 160, 23, 0.35);
+  border-color: var(--accent-gold);
+  transform: scale(1.08);
+}
+
+.btn-track-skip:active {
+  transform: scale(0.95);
+}
+
+.audio-track-subtitle {
+  font-size: 0.76rem;
+  color: #d1b894;
+  margin-top: -4px;
+  margin-bottom: 8px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-style: italic;
+  opacity: 0.9;
+}
+
 .volume-value {
   font-size: 0.82rem;
   font-weight: 700;

@@ -261,10 +261,12 @@
             <span id="label-setting-music" class="audio-setting-name">🎵 Musik (Irischer Folk)</span>
           </div>
           <div class="audio-setting-controls">
+            <button id="btn-next-track" class="btn-track-skip" title="Nächster Musiktitel (Titel wechseln)" type="button">⏭️</button>
             <input type="range" id="slider-music" class="volume-slider" min="0" max="100" value="80" aria-label="Musik Lautstärke">
             <span id="val-music" class="volume-value">80%</span>
           </div>
         </div>
+        <div class="audio-track-subtitle" id="audio-track-title">Titel: Irish Pub Folk - Track 1 (1/4)</div>
 
         <!-- Card Sounds -->
         <div class="audio-setting-row">
@@ -318,8 +320,8 @@
     </div>
   </div>
 
-  <!-- Background Music Audio Element (Authentic Irish Folk) -->
-  <audio id="bg-music" src="irish_folk.mp3" loop preload="auto"></audio>
+  <!-- Background Music Audio Element (Authentic Irish Folk Playlist - 4 Tracks) -->
+  <audio id="bg-music" src="music/irish_folk_1.mp3" preload="auto"></audio>
 
   <!-- Canvas for celebration fireworks / confetti -->
   <canvas id="fireworks-canvas"></canvas>

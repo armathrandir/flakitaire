@@ -228,6 +228,7 @@ const TRANSLATIONS = {
       labelLang: 'Sprache:',
       sectionAudio: 'Sound & Lautstärke',
       musicLabel: '🎵 Musik (Irischer Folk)',
+      trackSkipTitle: 'Nächster Musiktitel (Titel wechseln)',
       cardsLabel: '🃏 Karten-Sounds',
       drinksLabel: '🥃 Trink-Sounds (Ablage)',
       victoryLabel: '🎺 Sieges-Fanfare',
@@ -385,6 +386,7 @@ const TRANSLATIONS = {
       labelLang: 'Language:',
       sectionAudio: 'Sound & Volume',
       musicLabel: '🎵 Background Music (Irish Folk)',
+      trackSkipTitle: 'Next Music Track',
       cardsLabel: '🃏 Card Sounds',
       drinksLabel: '🥃 Drinking Sounds (Foundation)',
       victoryLabel: '🎺 Victory Fanfare',
@@ -542,6 +544,7 @@ const TRANSLATIONS = {
       labelLang: 'Idioma:',
       sectionAudio: 'Audio y Volumen',
       musicLabel: '🎵 Música de fondo (Irish Folk)',
+      trackSkipTitle: 'Siguiente pista de música',
       cardsLabel: '🃏 Sonidos de cartas',
       drinksLabel: '🥃 Sonidos de chupitos (Ablación)',
       victoryLabel: '🎺 Sonido de victoria',
@@ -699,6 +702,7 @@ const TRANSLATIONS = {
       labelLang: 'Язык:',
       sectionAudio: 'Звук и громкость',
       musicLabel: '🎵 Фоновая музыка (Irish Folk)',
+      trackSkipTitle: 'Следующий трек',
       cardsLabel: '🃏 Звуки карт',
       drinksLabel: '🥃 Звуки рюмки (Сбор в дом)',
       victoryLabel: '🎺 Победный сигнал (Фанфары)',
@@ -856,6 +860,7 @@ const TRANSLATIONS = {
       labelLang: 'Språk:',
       sectionAudio: 'Ljud & Volym',
       musicLabel: '🎵 Bakgrundsmusik (Irländsk folk)',
+      trackSkipTitle: 'Nästa musikspår',
       cardsLabel: '🃏 Kortljud',
       drinksLabel: '🥃 Dryckesljud (Ablation)',
       victoryLabel: '🎺 Segerljud (Fanfar)',
@@ -1013,6 +1018,7 @@ const TRANSLATIONS = {
       labelLang: 'Lingua:',
       sectionAudio: 'Audio & Volume',
       musicLabel: '🎵 Musica di sottofondo (Folk)',
+      trackSkipTitle: 'Traccia musicale successiva',
       cardsLabel: '🃏 Suoni delle carte',
       drinksLabel: '🥃 Suoni del sorso (Bicchierino)',
       victoryLabel: '🎺 Suono di vittoria (Fanfara)',
@@ -2102,19 +2108,28 @@ function getCourtCardSVG(rankValue, suitKey) {
   `;
 }
 
-// --- Traditional Irish Folk Background Music Player ---
-// Track: "Galway" by Kevin MacLeod (incompetech.com)
-// Authentic acoustic Irish Folk pub session (Fiddle, Flute, Bass, Guitar, Drums)
-// Licensed under Creative Commons: By Attribution 4.0 International
-// http://creativecommons.org/licenses/by/4.0/
+// --- Traditional Irish Pub Folk Background Music Playlist Player ---
+// Features 4 acoustic Irish Pub Folk tavern session tracks (Guitars, Fiddles, Whistle, Bodhrán, Mandolin)
+const IRISH_FOLK_PLAYLIST = [
+  { id: 1, title: 'Irish Pub Folk - Track 1', file: 'music/irish_folk_1.mp3' },
+  { id: 2, title: 'Irish Pub Folk - Track 2', file: 'music/irish_folk_2.mp3' },
+  { id: 3, title: 'Irish Pub Folk - Track 3', file: 'music/irish_folk_3.mp3' },
+  { id: 4, title: 'Irish Pub Folk - Track 4', file: 'music/irish_folk_4.mp3' }
+];
+
 class IrishFolkMusicPlayer {
   constructor() {
+    this.playlist = IRISH_FOLK_PLAYLIST;
+    this.currentIndex = 0;
+    this.trackChangeCallbacks = [];
+
     this.audio = document.getElementById('bg-music');
     if (!this.audio) {
-      this.audio = new Audio('irish_folk.mp3');
+      this.audio = new Audio(this.playlist[0].file);
       this.audio.id = 'bg-music';
+      document.body.appendChild(this.audio);
     }
-    this.audio.loop = true;
+    this.audio.loop = false; // Must be false so 'ended' event fires to advance playlist
     this.audio.preload = 'auto';
     this.baseVolume = 0.16; // Subtle tavern background level so card sounds stay clearly audible
     const storedVol = localStorage.getItem(STORAGE_KEYS.MUSIC_VOLUME);
@@ -2122,6 +2137,26 @@ class IrishFolkMusicPlayer {
     this.audio.volume = this.effectiveVolume;
     this.duckTimeout = null;
     this.wasPlayingBeforeHide = false;
+
+    // Ensure audio src points to playlist
+    if (!this.audio.src || this.audio.src.indexOf('irish_folk.mp3') !== -1) {
+      this.audio.src = this.playlist[0].file;
+    }
+
+    // Advance to next track when current one finishes
+    this.audio.addEventListener('ended', () => {
+      this.nextTrack(true);
+    });
+
+    // Error handling: if a track fails to load, gracefully advance to next
+    this.audio.addEventListener('error', (err) => {
+      console.warn('Music playback error on track ' + (this.currentIndex + 1) + ', advancing:', err);
+      setTimeout(() => {
+        if (this.isPlaying || localStorage.getItem(STORAGE_KEYS.MUSIC_ENABLED) !== 'false') {
+          this.nextTrack(true);
+        }
+      }, 1000);
+    });
   }
 
   get effectiveVolume() {
@@ -2132,11 +2167,55 @@ class IrishFolkMusicPlayer {
     return !!(this.audio && !this.audio.paused && !this.audio.ended);
   }
 
+  getCurrentTrack() {
+    return {
+      ...this.playlist[this.currentIndex],
+      index: this.currentIndex,
+      total: this.playlist.length
+    };
+  }
+
+  onTrackChange(cb) {
+    if (typeof cb === 'function') {
+      this.trackChangeCallbacks.push(cb);
+      cb(this.getCurrentTrack());
+    }
+  }
+
+  notifyTrackChange() {
+    const info = this.getCurrentTrack();
+    this.trackChangeCallbacks.forEach(cb => {
+      try { cb(info); } catch (e) { console.error(e); }
+    });
+  }
+
   setVolume(percent) {
     this.volumePercent = Math.min(100, Math.max(0, parseInt(percent, 10) || 0));
     if (this.audio) {
       this.audio.volume = this.effectiveVolume;
     }
+  }
+
+  loadTrack(index, autoplay = false) {
+    this.currentIndex = ((index % this.playlist.length) + this.playlist.length) % this.playlist.length;
+    const track = this.playlist[this.currentIndex];
+    if (this.audio) {
+      const wasPlaying = this.isPlaying;
+      this.audio.src = track.file;
+      this.audio.volume = this.effectiveVolume;
+      this.notifyTrackChange();
+      if (autoplay || wasPlaying) {
+        this.start();
+      }
+    }
+  }
+
+  nextTrack(autoplay = true) {
+    this.loadTrack(this.currentIndex + 1, autoplay);
+  }
+
+  prevTrack(autoplay = true) {
+    this.loadTrack(this.currentIndex - 1, autoplay);
   }
 
   start() {
@@ -2376,6 +2455,20 @@ class SoundManager {
 
   isPlayingMusic() {
     return !!(this.music && this.music.isPlaying);
+  }
+
+  nextMusicTrack() {
+    this.init();
+    if (this.music && typeof this.music.nextTrack === 'function') {
+      this.music.nextTrack(this.musicEnabled);
+    }
+  }
+
+  getCurrentMusicTrack() {
+    if (this.music && typeof this.music.getCurrentTrack === 'function') {
+      return this.music.getCurrentTrack();
+    }
+    return null;
   }
 
   // Generic sound player that tries Web Audio buffer first, falling back to HTML5 Audio
@@ -2865,6 +2958,8 @@ class SolitaireGame {
       toggleMusic: document.getElementById('toggle-music'),
       sliderMusic: document.getElementById('slider-music'),
       valMusic: document.getElementById('val-music'),
+      btnNextTrack: document.getElementById('btn-next-track'),
+      audioTrackTitle: document.getElementById('audio-track-title'),
       toggleSoundCards: document.getElementById('toggle-sound-cards'),
       sliderSoundCards: document.getElementById('slider-sound-cards'),
       valSoundCards: document.getElementById('val-sound-cards'),
@@ -2920,6 +3015,12 @@ class SolitaireGame {
     if (this.dom.toggleMusic) this.dom.toggleMusic.checked = this.sound.musicEnabled;
     if (this.dom.sliderMusic) this.dom.sliderMusic.value = this.sound.musicVolume;
     if (this.dom.valMusic) this.dom.valMusic.textContent = this.sound.musicVolume + '%';
+    if (this.dom.audioTrackTitle && this.sound) {
+      const track = this.sound.getCurrentMusicTrack();
+      if (track) {
+        this.dom.audioTrackTitle.textContent = `Titel: ${track.title} (${track.index + 1}/${track.total})`;
+      }
+    }
 
     if (this.dom.toggleSoundCards) this.dom.toggleSoundCards.checked = this.sound.soundCardsEnabled;
     if (this.dom.sliderSoundCards) this.dom.sliderSoundCards.value = this.sound.soundCardsVolume;
@@ -3115,6 +3216,9 @@ class SolitaireGame {
     setTxt('label-setting-lang', sm.labelLang || t.labelLang || 'Sprache:');
     setTxt('section-audio-title', sm.sectionAudio || 'Sound & Lautstärke');
     setTxt('label-setting-music', sm.musicLabel || '🎵 Musik (Irischer Folk)');
+    if (this.dom.btnNextTrack) {
+      this.dom.btnNextTrack.title = sm.trackSkipTitle || 'Nächster Musiktitel (Titel wechseln)';
+    }
     setTxt('label-setting-cards', sm.cardsLabel || '🃏 Karten-Sounds');
     setTxt('label-setting-drinks', sm.drinksLabel || '🥃 Trink-Sounds (Ablage)');
     setTxt('label-setting-victory', sm.victoryLabel || '🎺 Sieges-Fanfare');
@@ -3209,6 +3313,25 @@ class SolitaireGame {
         const val = parseInt(e.target.value, 10);
         this.sound.setMusicVolume(val);
         if (this.dom.valMusic) this.dom.valMusic.textContent = val + '%';
+      });
+    }
+
+    if (this.dom.btnNextTrack) {
+      this.dom.btnNextTrack.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.sound.nextMusicTrack();
+        const track = this.sound.getCurrentMusicTrack();
+        if (track && this.dom.audioTrackTitle) {
+          this.dom.audioTrackTitle.textContent = `Titel: ${track.title} (${track.index + 1}/${track.total})`;
+        }
+      });
+    }
+
+    if (this.sound && this.sound.music && typeof this.sound.music.onTrackChange === 'function') {
+      this.sound.music.onTrackChange((track) => {
+        if (this.dom.audioTrackTitle && track) {
+          this.dom.audioTrackTitle.textContent = `Titel: ${track.title} (${track.index + 1}/${track.total})`;
+        }
       });
     }
 

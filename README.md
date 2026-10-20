@@ -78,7 +78,8 @@ In Klondike, tableau cards must alternate in color. In the Schnaps Edition:
 - Every new game is mathematically verified through an in-engine forward solver to guarantee a winnable path.
 - Toggle between **🌟 Solvable** and **🎲 Random** in the top bar.
 
-### 🔊 Procedural Web Audio
-- Card flip & sliding sounds synthesized in real time with Web Audio API.
-- Foundation scoring features a custom **drink sip / gulp sound**.
-- Fanfare and particle fireworks celebration on victory.
+### 🔊 Authentic Tavern Audio & Music Playlist
+- **4-Track Irish Pub Folk Playlist**: High-spirited acoustic pub folk session tracks playing in continuous variety rotation, with skip-to-next button and title info in Settings.
+- **Card Sounds**: Flip, draw, snap, and sweep sounds synthesized with Web Audio.
+- **Drinking Sounds**: Real human sip and swallow variations on Foundation scoring.
+- **Victory Fanfare**: Brass fanfare and celebration fireworks upon winning.
